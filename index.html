@@ -9,27 +9,39 @@
 	</head>
 
 	<body>
-		<div class = "topMenu" >
-			<il><a id="welcome" onclick="show('welcome')"> Welcome</a></il>
+		<div class = "topMenu" id="topMenu">
+			<il><a onclick="show('welcome')"> Welcome</a></il>
 			<il><a onclick="show('register')"> Register</a></il>
 			<il><a onclick="show('login')"> Login</a></il>
 			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
 		</div>
 
 
-		<div class = "welcome" >
+		<div class = "welcome" id="welcome" style="display: none;">
 			<img  class="pictuerWelcome" src="img/background.jpg" style="margin-top: 10%; width: 50%; height: 50%; " />
 			<!--hi-->
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<h1>welcome</h1>
 
 		</div>
 
-		<div class = "register" >
+		<div class = "register" id="register" hidden>
+			<br>
+			<br>
+			<br><br><br>
+			<h1>register</h1>
 			
-
 		</div>
 
-		<div class = "Login" >
-			
+		<div class = "login" id="login" style="display: none;">
+			<br>
+			<br>
+			<br><br><br>
+			<h1>Login</h1>
 
 		</div>
 

@@ -8,9 +8,48 @@ var time_elapsed;
 var interval;
 
 $(document).ready(function() {
-	context = canvas.getContext("2d");
-	Start();
+	show("welcome")
+	//context = canvas.getContext("2d");
+	//Start();
 });
+function show(elementID){
+	//var contClass = $(this).data('div');
+	//$('.content').hide().filter('.' + contClass).show()
+	var e = document.getElementById(elementID);
+	//document.querySelectorAll('.item').forEach(function(div) {
+	//div.style.display = 'none';
+	  //})
+	$('div').hide();
+	var topMenu = document.getElementById("topMenu");
+	topMenu.style.display = 'block'
+	e.style.display = 'block';
+
+
+
+
+	//case1 : Welcome
+//	if(par=="welcome"){
+//		document.getElementById("registerID").style.display ="none"
+//		document.getElementById("loginID").style.display ="none"
+	//	document.getElementById("welcomeID").style.display ="block"
+	//}
+	//case2 : Register
+//	if(par=="register"){
+//		document.getElementById("welcomeID").style.display ="none"
+	//	document.getElementById("loginID").style.display ="none"
+	//	document.getElementById("registerID").style.display ="block"
+//	}
+	//case2 : Login
+//	if(par=="login"){
+	//	document.getElementById("welcomeID").style.display ="none"
+	//	document.getElementById("registerID").style.display ="none"
+	//	document.getElementById("loginID").style.display ="block"
+	//}
+
+
+
+} 
+
 
 function Start() {
 	board = new Array();
