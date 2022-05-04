@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title> Pacman! </title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		
 	</head>
 
 	<body>
+		<div class = "topMenu" >
+			<il><a id="welcome" onclick="show('welcome')"> Welcome</a></il>
+			<il><a onclick="show('register')"> Register</a></il>
+			<il><a onclick="show('login')"> Login</a></il>
+			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
+		</div>
+
+
+		<div class = "welcome" >
+			<img  class="pictuerWelcome" src="img/background.jpg" style="margin-top: 10%; width: 50%; height: 50%; " />
+
+		</div>
+
+		<div class = "register" >
+			
+
+		</div>
+
+		<div class = "Login" >
+			
+
+		</div>
+
+
+
+		<br><br><br><br><br><br><br><br><br>
+
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
