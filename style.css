@@ -43,7 +43,7 @@ body{
 } 
 
 
-.register
+.registerForm
 {
     border-radius: 5px;
     margin: 0 auto;
@@ -60,16 +60,15 @@ label{
 	letter-spacing: 1px;
     color: rgb(255, 255, 255);
     margin-left: 5%;
-    font-size: 30px;
+    font-size: 25px;
 }
 
-input[type=text]
+input[type = "text"]
 {
-
     width: 90%;
     text-align: left;
     margin-left: 5%;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .registerButton{
@@ -107,4 +106,9 @@ input[type=text]
     width: 30%;
     margin-left: 35%;
     border-radius: 25px;
+}
+
+form .error {
+	display: block;
+	color: #6e1111;
 }
