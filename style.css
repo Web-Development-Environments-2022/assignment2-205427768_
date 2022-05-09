@@ -41,3 +41,70 @@ body{
 	background-color:#6b7574;
 	color: rgb(255, 255, 255);
 } 
+
+
+.register
+{
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align:left;
+    background-color: rgba(99, 100, 95, 0.459);
+    width: 500px;
+    height: 550px;
+}
+
+label{
+	margin-left: 2%;
+	font-family: cursive;
+	letter-spacing: 1px;
+    color: rgb(255, 255, 255);
+    margin-left: 5%;
+    font-size: 30px;
+}
+
+input[type=text]
+{
+
+    width: 90%;
+    text-align: left;
+    margin-left: 5%;
+    font-size: 20px;
+}
+
+.registerButton{
+    background-color: #7099f0;
+    color: white;
+    font-size: 22px;
+    letter-spacing: 4px;
+    padding: 8px 20px;
+    border: white solid;
+    cursor: pointer;
+    width: 30%;
+    margin-left: 35%;
+    border-radius: 25px;
+}
+
+.login
+{
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align:left;
+    background-color: rgba(99, 100, 95, 0.459);
+    width: 500px;
+    height: 300px;
+}
+
+.loginButton{
+    background-color: #7099f0;
+    color: white;
+    font-size: 22px;
+    letter-spacing: 4px;
+    padding: 8px 20px;
+    border: white solid;
+    cursor: pointer;
+    width: 30%;
+    margin-left: 35%;
+    border-radius: 25px;
+}
