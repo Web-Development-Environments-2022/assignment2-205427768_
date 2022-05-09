@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title> Pacman! </title>
+		<link rel="icon" href="img/logo.jpg">
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
@@ -30,19 +31,38 @@
 		</div>
 
 		<div class = "register" id="register" hidden>
-			<br>
-			<br>
-			<br><br><br>
-			<h1>register</h1>
-			
+			<form class = "register" name="register" >
+
+				
+			</form>
+			<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Register</h1>
+			<label for="username"><b>User Name</b></label>
+			<input type="text" placeholder="Choose a User Name" name="username" id="username">
+			<label for="password"><b>Password</b></label>
+			<input type="text" placeholder="Choose a Password" name="password" id="password">
+			<label for="email"><b>User Name</b></label>
+			<input type="text" placeholder="Enter Your First E-Mail" name="email" id="email">
+			<label for="firstname"><b>First Name</b></label>
+			<input type="text" placeholder="Enter Your First Name" name="firstname" id="firstname">
+			<label for="lastname"><b>First Name</b></label>
+			<input type="text" placeholder="Enter Your Last Name" name="lastname" id="lastname">
+			<label for="date"><b>Date Of Birth</b></label>
+			<select id="days" name="days"></select>
+			<select id="months" name="months"></select>
+			<select id="years" name="years"></select>
+			<br><br>
+			<button  type="submit"  class="registerButton" >Submit</button>
+
 		</div>
 
 		<div class = "login" id="login" style="display: none;">
-			<br>
-			<br>
-			<br><br><br>
-			<h1>Login</h1>
-
+			<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Login</h1>
+			<label for="username"><b>User Name</b></label>
+			<input type="text" placeholder="Choose a User Name" name="username" id="username">
+			<label for="password"><b>Password</b></label>
+			<input type="text" placeholder="Choose a Password" name="password" id="password">
+			<br><br>
+			<button  type="submit"  class="loginButton" >Submit</button>
 		</div>
 
 
