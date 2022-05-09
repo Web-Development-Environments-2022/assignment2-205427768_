@@ -7,48 +7,128 @@ var start_time;
 var time_elapsed;
 var interval;
 
+
+
+window.onclick = function(event) {
+	if (event.target == modal) {
+	  modal.style.display = "none";
+	}
+  }
 $(document).ready(function() {
 	show("welcome")
-	//context = canvas.getContext("2d");
-	//Start();
+	context = canvas.getContext("2d");
+	Start();
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on the button, open the modal
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+
+	var sliderBalls = document.getElementById("lblNumOfBalls");
+	var outputBalls = document.getElementById("ballsNum");
+	outputBalls.innerHTML = sliderBalls.value;
+	sliderBalls.oninput = function() {
+		outputBalls.innerHTML = this.value;
+	}
+/*
+	let colorButton1 = document.getElementById("colorpicker1");
+	colorButton1.oninput = function() {
+		colorDiv.style.color = colorButton.value;
+	}
+	let colorButton2 = document.getElementById("colorpicker1");
+	colorButton2.oninput = function() {
+		colorDiv.style.color = colorButton.value;
+	}
+	let colorButton3 = document.getElementById("colorpicker1");
+	colorButton3.oninput = function() {
+		colorDiv.style.color = colorButton.value;
+	}
+	*/
+
+	var sliderMonsters = document.getElementById("lblNumOfMonsters");
+	var outputMonsters = document.getElementById("monstersNum");
+	outputMonsters.innerHTML = sliderMonsters.value;
+	sliderMonsters.oninput = function() {
+		outputMonsters.innerHTML = this.value;
+	}
+
+
+
+
+});
+
+
+
+
+
+$(document).keydown(function(event) { 
+	if (event.keyCode == 27) { 
+		document.getElementById("myModal").style.display = "none";
+	}
 });
 function show(elementID){
-	//var contClass = $(this).data('div');
-	//$('.content').hide().filter('.' + contClass).show()
+
 	var e = document.getElementById(elementID);
-	//document.querySelectorAll('.item').forEach(function(div) {
-	//div.style.display = 'none';
-	  //})
-	$('div').hide();
-	var topMenu = document.getElementById("topMenu");
-	topMenu.style.display = 'block'
+	$('div.divstoHide').hide();
+	//var divsToHide = document.getElementsByClassName("divstoHide");
+	//for(var i = 0; i < divsToHide.length; i++){
+	//	divsToHide[i].style.visibility = "hidden";
+	//}
+	
+
+	//var topMenu = document.getElementById("topMenu");
+	//var header = document.getElementById("header");
+	//header.style.display = 'block'
+	//topMenu.style.display = 'block'
 	e.style.display = 'block';
 
 
 
 
+
 	//case1 : Welcome
-//	if(par=="welcome"){
-//		document.getElementById("registerID").style.display ="none"
-//		document.getElementById("loginID").style.display ="none"
+	//if(par=="welcome"){
+	//	document.getElementById("registerID").style.display ="none"
+	//	document.getElementById("loginID").style.display ="none"
 	//	document.getElementById("welcomeID").style.display ="block"
 	//}
 	//case2 : Register
-//	if(par=="register"){
-//		document.getElementById("welcomeID").style.display ="none"
+	//if(par=="register"){
+	//	document.getElementById("welcomeID").style.display ="none"
 	//	document.getElementById("loginID").style.display ="none"
 	//	document.getElementById("registerID").style.display ="block"
-//	}
+	//}
 	//case2 : Login
 //	if(par=="login"){
-	//	document.getElementById("welcomeID").style.display ="none"
-	//	document.getElementById("registerID").style.display ="none"
-	//	document.getElementById("loginID").style.display ="block"
-	//}
+//		document.getElementById("welcomeID").style.display ="none"
+//		document.getElementById("registerID").style.display ="none"
+//		document.getElementById("loginID").style.display ="block"
+//	}
 
 
 
 } 
+
 
 
 function Start() {
@@ -153,12 +233,12 @@ function Draw() {
 				context.fill();
 				context.beginPath();
 				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.fillStyle = "white"; //color
 				context.fill();
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.fillStyle = "white"; //color
 				context.fill();
 			} else if (board[i][j] == 4) {
 				context.beginPath();

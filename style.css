@@ -2,8 +2,66 @@ body{
 	/* background-color: black; */
 	background-repeat: no-repeat;
 	background-size: 100%;
-	color: black;
+	color: white;
 	text-align: center;
+
+    background: #000;
+    font-family: 'Lexend Exa', sans-serif;
+
+	/*margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #000;*/
+	
+}
+table{
+    margin: o auto;
+    align-self: center;
+    border-spacing: 20px;
+}
+#pac-man-logo1{
+	width: 176.46px;
+	height:42.3 px;
+}
+#Logo{
+    width: 60px;
+	height:60px;
+}
+.header img{
+    float: left;
+}
+#settings{
+   /* background-color: #002bff; */
+   display: flex;
+   justify-content: center;
+}
+
+.header{
+	position: fixed;
+	top: 25px;
+    height: 180px;
+    align-items: center;
+    /*direction: ltr;*/
+    width: 100%;
+    right: -15px;
+/*	margin-left: 0 px;
+	display: block;
+	/*float: left;*/
+/*	justify-content: left;*/
+/*	align-items: flex-start;*/
+	/*display: flex;*/
+
+}
+div.headerRight{
+    position: absolute;
+    right: 5px;
+    width: 150px;
+    height: 180px;
 }
 
 .topMenu{
@@ -11,14 +69,56 @@ body{
   	font-family: 'Lexend Exa', sans-serif;
 	cursor: pointer;
 	position: fixed;
-	top: 25px;
+    width: 80%;
+	top: 80px;
 	left: 50%;
 	transform: translateX(-50%);
-	/* display: inline-block; */
+	/*display: inline-block; */
 	border: 2px solid #EBECF1;
 	border-radius: 25px;
 	/* animation: slide-in 1s ease-out; */
 	padding: 2px 20px;
+}
+#welcome{
+	display: none;
+    position: relative;
+    top: 100px;
+}
+.divstoHide a{
+    padding: 14px 10px;
+	font-size: 40px;
+	text-decoration: none;
+   /* font-family: "Oswald",sans-serif;*/
+}
+#register{
+	display: none;
+}
+#login{
+	display: none;
+    width: 100%;
+}
+.footer{
+    display: block;
+    width: 100%;
+    background-color: #ffd700;
+    color: black;
+    position: relative;
+    height: 80px;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: bold;
+
+}
+.column1{
+    text-align: left;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
 /* ul{
@@ -31,13 +131,201 @@ body{
 .topMenu a {
 	color: rgb(0, 0, 0);
 	-webkit-text-stroke: 0.3px gold;
-	font-family: fantasy;
+	/*font-family: fantasy;*/
 	padding: 14px 10px;
 	font-size: 40px;
 	text-decoration: none;
+    font-family: "Oswald",sans-serif;
 }
   
 .topMenu a:hover {
 	background-color:#6b7574;
 	color: rgb(255, 255, 255);
 } 
+.button{
+	border-radius: 12px;
+}
+/*#btnRegister, #btnLogin{
+	padding: 50px 80px;
+	
+	
+}
+#btnRegister:hover, #btnLogin:hover{
+	padding: 50px 80px;
+	
+}*/
+
+.slider {
+    -webkit-appearance: none;
+    background: #d3d3d3;
+    height: 10px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+  
+.slider:hover {
+    opacity: 1;
+    
+
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    background: url(img/Pac-Man.svg.png);
+    background-size: 35px 35px;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 35px;
+    height: 35px;
+    background: url(img/Pac-Man.svg.png);
+    background-size: 35px 35px;
+    cursor: pointer;
+  }
+
+
+
+.glow-on-hover {
+    width: 250px;
+    height: 150px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+	margin: 50px 50px 50px 50px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+  /* Modal Body */
+  .modal-body {padding: 2px 16px;}
+  
+  /* Modal Footer */
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+
+
+  #colorpicker1, #colorpicker2, #colorpicker3 {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+#colorpicker1:hover, #colorpicker2:hover, #colorpicker3:hover{
+    cursor: pointer;
+}
+
+#colorpicker1::-webkit-color-swatch-wrapper , #colorpicker2::-webkit-color-swatch-wrapper, #colorpicker3::-webkit-color-swatch-wrapper {
+    padding: 0; 
+}
+#colorpicker1::-webkit-color-swatch, #colorpicker2::-webkit-color-swatch, #colorpicker3::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
