@@ -112,3 +112,15 @@ form .error {
 	display: block;
 	color: #6e1111;
 }
+
+
+.select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background: #2c3e50;
+	overflow: hidden;
+	border-radius: .25em;
+}

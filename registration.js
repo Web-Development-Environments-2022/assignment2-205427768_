@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     localStorage.setItem('k', 'k');
-
+    addSelectDateItems();
+   
     $("form[name='registerForm']").validate
     ({
         rules: 
@@ -39,19 +40,19 @@ $( document ).ready(function() {
             days:
             {
                 required: true,
-                Number: true
+                number: true
             },
 
             months:
             {
                 required: true,
-                Number: true
+                number: true
             },
 
             years:
             {
                 required: true,
-                Number: true
+                number: true
             }
         }, 
 
@@ -98,18 +99,51 @@ $( document ).ready(function() {
                 required: "Choose Year",
             }
         },
-
-        SubmitEvent: function()
-        {
-            let un = document.getElementById("username").value;
-            let p = document.getElementById("password").value;
-            localStorage.setItem(un, p);
-            let form = $("form[name='register']");
+        submitHandler: function () {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            localStorage.setItem(username, password);
+            let form = $("form[name='registerForm']");
             form[0].reset();
+            show("login");
         }
-    })
-});
+    });
 
+    $("form[name='loginForm']").validate({
+		rules: 
+		{
+            username: 
+		  {
+			  required: true,
+		  },
+
+		  password: 
+		  {
+			required: true,
+		  }
+	    },
+
+		submitHandler: function() {
+            let form = $("form[name='loginForm']"); 
+            let username = document.getElementsByName("usernameLogin")[0].value;
+            let password = document.getElementsByName("passwordLogin")[0].value;
+            let userPassword = localStorage.getItem(username);
+            
+            if (userPassword == null || userPassword != password){
+                alert("wrong password!");
+                form[0].reset();
+            }
+            else if(password == userPassword){
+                //show('setting');
+                alert("yes");
+            }
+            else{
+                form[0].reset();
+                alert("no");
+            }
+		},
+	  });
+});
 
 $(function() {
 	// the username is available
@@ -124,3 +158,26 @@ $(function() {
         return validPassword;
 	});
 });
+
+function  addSelectDateItems()
+{
+    var days = '<option value="days">Day</option>';
+    for (var i=1;i <= 31 ;i++){
+        days += '<option value="'+ i + '">' + i + '</option>';
+    }
+    
+    var months = '<option value="months">Month</option>';
+    for (var i=1; i <= 12 ;i++){
+        months += '<option value="'+ i + '">' + i + '</option>';
+    }
+    
+    var years = '<option value="years">Year</option>';
+    for (var i=1950; i <= 2022 ;i++){
+        years += '<option value="'+ i + '">' + i + '</option>';
+    }
+    
+    $('#days').append(days);
+    $('#months').append(months);
+    $('#years').append(years);
+}
+
