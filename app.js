@@ -201,6 +201,26 @@ function findRandomEmptyCell(board) {
 	return [i, j];
 }
 
+function KeyUpdate(e,direction){
+
+	if(direction=="UP")
+	{
+		document.getElementById("keyUp").value = e.key
+	}
+	if(direction=="LEFT"){
+		document.getElementById("keyLeft").value = e.key
+		}
+	if(direction=="DOWN"){
+		document.getElementById("keyDown").value = e.key
+	}
+	
+	if(direction=="RIGHT"){
+		document.getElementById("keyRight").value = e.key
+	} 
+  }
+
+
+
 function GetKeyPressed() {
 	if (keysDown[38]) {
 		return 1;

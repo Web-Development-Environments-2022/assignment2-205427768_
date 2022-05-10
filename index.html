@@ -2,10 +2,14 @@
 <html>
 	<head>
 		<title> Pacman! </title>
+		<link rel="icon" href="img/logo.jpg">
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
-		
+		<script type="text/javascript" src="./registration.js"></script>
+
 	</head>
 
 	<body>
@@ -57,27 +61,60 @@
 
 		</div>
 
-		<div class = "divstoHide" id="register" >
-			<br>
-			<br>
-			<br><br><br><br><br><br>
-			<h1>register</h1>
-			
+				
+		<div class = "divstoHide" id="register">
+			<form class = "registerForm" name="registerForm" >
+				<br><br>
+				<!-- <h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Register</h1> -->
+				<label for="username"><b>User Name</b></label>
+				<input type="text" placeholder="Choose a User Name" name="username" id="username">
+				<label for="password"><b>Password</b></label>
+				<input type="text" placeholder="Choose a Password" name="password" id="password">
+				<label for="email"><b>E-mail</b></label>
+				<input type="text" placeholder="Enter Your E-Mail" name="email" id="email">
+				<label for="firstname"><b>First Name</b></label>
+				<input type="text" placeholder="Enter Your First Name" name="firstname" id="firstname">
+				<label for="lastname"><b>Last Name</b></label>
+				<input type="text" placeholder="Enter Your Last Name" name="lastname" id="lastname">
+				<label for="date"><b>Date Of Birth</b></label>
+				<select id="days" name="days"></select>
+				<select id="months" name="months"></select>
+				<select id="years" name="years"></select>
+				<br><br>
+				<button  type="submit"  class="registerButton" >Submit</button>
+				<br>
+			</form>
 		</div>
 
 		<div class = "divstoHide" id="login">
-			<!--style="display: none-->
-			<br>
-			<br>
-			<br><br><br>
-			<h1>Login</h1>
-
+			<form class = "loginForm" name="loginForm" >
+				<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Login</h1>
+				<label for="username"><b>User Name</b></label>
+				<input type="text" placeholder="Choose a User Name" name="usernameLogin" id="username">
+				<label for="password"><b>Password</b></label>
+				<input type="text" placeholder="Choose a Password" name="passwordLogin" id="password">
+				<br><br>
+				<button  type="submit"  class="loginButton" >Submit</button>
+			</form>
 		</div>
 
 
 
 		<br><br><br><br><br><br><br><br><br>
 		<div id="settings">
+			<label for="keyUp">up</label>
+			<input type="button" class="keys" id="keyUp" onkeydown="KeyUpdate(event,'UP')">
+			<label for="keyLeft">left</label>
+			<input type="button" class="keys" id="keyLeft" onkeydown="KeyUpdate(event,'LEFT')">
+			<label for="keyDown">down</label>
+			<input type="button" class="keys" id="keyDown" onkeydown="KeyUpdate(event,'DOWN')">
+			<label for="keyRight">right</label>
+			<input type="button" class="keys" id="keyRight" onkeydown="KeyUpdate(event,'RIGHT')">
+
+
+
+
+
 			<table>
 				<tr>
 					<td class="column1"> <label for="lblNumOfBalls">number of balls:</label> </td>
@@ -102,8 +139,8 @@
 				</tr>
 				<!-- TO_do: Timer minimum 60 sec   --> 
 				<tr>
-					<td class="column1">Set game time</td>
-					<td class="column2"><input type="number" min="60" step="1" onfocus="this.previousValue = this.value" onkeydown="this.previousValue = this.value" oninput="validity.valid || (value = this.previousValue)"/></td>
+					<td class="column1"><label for="gameTime">Set game time</label></td>
+					<td class="column2"><input type="number" id="gameTime" min="60" step="1" onfocus="this.previousValue = this.value" onkeydown="this.previousValue = this.value" oninput="validity.valid || (value = this.previousValue)"/></td>
 					<td class="column3"></td>
 
 				</tr>
