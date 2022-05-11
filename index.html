@@ -27,6 +27,7 @@
 			<il><a onclick="show('register')"> Register</a></il>
 			<il><a onclick="show('login')"> Login</a></il>
 			<il><a onclick="show('settings')"> settings</a></il>
+			<il><a onclick="show('gameAll')"> Game</a></il>
 			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
 		</div>
 		<!-- The Modal -->
@@ -167,7 +168,7 @@
 							<td class="column3">Value: <span id="monstersNum"></span></td>
 						</tr>
 						<tr>
-							<td><button type="button" id="startGame" class="glow-on-hover"><a>Start<br> Game</a></button> </td>
+							<td><button type="button" id="startGame" class="glow-on-hover" onclick="startNewGame()"><a>Start<br> Game</a></button> </td>
 							<td colspan="2"><button type="button" id="randomGame" class="glow-on-hover" onclick="generateRandomValues()"><a>Random</a></button> </td>
 						</tr>
 						

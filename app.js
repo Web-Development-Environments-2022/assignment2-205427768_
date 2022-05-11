@@ -16,8 +16,8 @@ window.onclick = function(event) {
   }
 $(document).ready(function() {
 	//show("welcome")
-	//context = canvas.getContext("2d");
-	//Start();
+	context = canvas.getContext("2d");
+	Start();
 
 
 	// Get the modal
@@ -140,6 +140,11 @@ function show(elementID){
 
 
 } 
+
+function startNewGame(){
+	show("gameAll");
+}
+
 function generateRandomValues(){
 	document.getElementById("keyUp").value = "ArrowUp"
 	document.getElementById("keyLeft").value = "ArrowLeft"
