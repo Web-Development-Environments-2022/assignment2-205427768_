@@ -343,17 +343,20 @@ p {
   /* Modal Header */
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #a5a5a5;
     color: white;
   }
   
   /* Modal Body */
-  .modal-body {padding: 2px 16px;}
+  .modal-body {
+      padding: 2px 16px;
+        color: #000;
+    }
   
   /* Modal Footer */
   .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #a5a5a5;
     color: white;
   }
 
