@@ -16,17 +16,15 @@
 		<div class="header" id="header">
 			<!--<img src="img/Logo.png" id="Logo"/> -->
 			<img src="img/pac-man-logo1.png" id="pac-man-logo1"/>
-			<div class="headerRight">
-				Ori <br>
-				Maya Sosnovik
-			</div>
+			<!-- <div class="headerRight">
+			</div> -->
 		</div> 
 		
 		<div class = "topMenu" id="topMenu">
 			<il><a onclick="show('welcome')"> Welcome</a></il>
 			<il><a onclick="show('register')"> Register</a></il>
 			<il><a onclick="show('login')"> Login</a></il>
-			<il><a onclick="show('settings')"> settings</a></il>
+			<il><a onclick="show('Settings')"> Settings</a></il>
 			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
 		</div>
 		<!-- The Modal -->
@@ -47,22 +45,20 @@
   			</div>
 		</div>
 	
-
+		<!-- Welcome -->
 		<div class="content">
 			<div class = "divstoHide" id="welcome">
-				<img  class="pictuerWelcome" src="img/welcome.jpg" style="width: 40%; height: 40%; " />
 				<br>
-				<br>
-				<br>
+				<img  class="pictuerWelcome" src="img/welcome.jpg" style="width: 40%; height: 40%;" />
+				<br><br>				
 				<button id="btnRegister" class="glow-on-hover" onclick="show('register')"><a>Register</a></button>
 				<button id="btnLogin" class="glow-on-hover" onclick="show('login')"><a>Login</a></button>
 			</div>
 
-				
+			<!-- Register -->	
 			<div class = "divstoHide" id="register">
 				<form class = "registerForm" name="registerForm" >
-					<br><br>
-					<!-- <h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Register</h1> -->
+					<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Register</h1>
 					<label for="username"><b>User Name</b></label>
 					<input type="text" placeholder="Choose a User Name" name="username" id="username">
 					<label for="password"><b>Password</b></label>
@@ -77,12 +73,13 @@
 					<select id="days" name="days"></select>
 					<select id="months" name="months"></select>
 					<select id="years" name="years"></select>
-					<br><br>
+					<br><br><br>
 					<button  type="submit"  class="registerButton" >Submit</button>
 					<br>
 				</form>
 			</div>
 
+			<!-- Login -->	
 			<div class = "divstoHide" id="login">
 				<form class = "loginForm" name="loginForm" >
 					<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Login</h1>
@@ -95,41 +92,10 @@
 				</form>
 			</div>
 
-
-
-			
-			<div id="settings" class="divstoHide">
+			<!-- Settings -->
+			<div class="divstoHide"  id="Settings" hidden>
 				<form class="settingsForm">
-					<br><br><br>
-					Please enter the game keyboard
-					<table>
-						<tr>
-							<td colspan="3" class="keyColumn"> <label for="keyUp" class="labelUP">up</label>
-								<input type="button" class="keys" id="keyUp" onkeydown="KeyUpdate(event,'Up')"> 
-							</td>
-						</tr>
-						<tr>
-							<td class="keyColumn">
-								<label for="keyLeft" class="labelUP">left</label>
-								<input type="button" class="keys" id="keyLeft" onkeydown="KeyUpdate(event,'LEFT')">
-							</td>
-							<td class="keyColumn"></td>
-							<td class="keyColumn">
-								<label for="keyRight" class="labelUP">right</label>
-					<input type="button" class="keys" id="keyRight" onkeydown="KeyUpdate(event,'RIGHT')">
-								
-							</td>					
-						</tr>
-						<tr>
-							<td colspan="3" class="keyColumn">
-								<label for="keyDown" class="labelUP">down</label>
-								<input type="button" class="keys" id="keyDown" onkeydown="KeyUpdate(event,'DOWN')">
-							</td>
-						</tr>
-					</table>
-					
-
-
+					<h1 style="font-size: 40px; font-family: Calibri;">Settings</h1>
 					<table>
 						<tr>
 							<td class="column1"> <label for="lblNumOfBalls">number of balls:</label> </td>
@@ -160,23 +126,49 @@
 
 						</tr>
 
-
 						<tr>
 							<td class="column1"><label for="lblNumOfMonsters">number of monsters:</label></td>
 							<td class="column2"><input id="lblNumOfMonsters" type="range" min="1" max="4" value="2" class="slider"></td>
 							<td class="column3">Value: <span id="monstersNum"></span></td>
-						</tr>
+						</tr>	
+					</table>
+					<label> Please enter the game keyboard:</label>
+					<table>
+					
 						<tr>
-							<td><button type="button" id="startGame" class="glow-on-hover"><a>Start<br> Game</a></button> </td>
-							<td colspan="2"><button type="button" id="randomGame" class="glow-on-hover" onclick="generateRandomValues()"><a>Random</a></button> </td>
+							<td></td>
+							<td  class="keyColumn"> <label for="keyUp" class="labelUP">up</label>
+								<input type="button" class="keys" id="keyUp" onkeydown="KeyUpdate(event,'Up')"> 
+							</td>
+							<td></td>
 						</tr>
 						
-					
+						<tr class = "Arrows">
+							<td class="keyColumn">
+								<label for="keyLeft" class="labelUP">left</label>
+								<input type="button" class="keys" id="keyLeft" onkeydown="KeyUpdate(event,'LEFT')">
+							<td class="keyColumn">
+								<label for="keyDown" class="labelUP">down</label>
+								<input type="button" class="keys" id="keyDown" onkeydown="KeyUpdate(event,'DOWN')">
+							</td>
+							<td class="keyColumn">
+								<label for="keyRight" class="labelUP">right</label>
+								<input type="button" class="keys" id="keyRight" onkeydown="KeyUpdate(event,'RIGHT')">				
+							</td>					
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="2" class="keyColumn"><button type="button" id="startGame" /*class="glow-on-hover"*/>Start<br> Game</button> </td>
+							<td colspan="3" class="keyColumn"><button type="button" id="randomGame"/*class="glow-on-hover"*/ onclick="generateRandomValues()">Random</button> </td>
+							<td colspan="4"></td>
+						</tr>
 					</table>
-					
 				</form>
 			</div>
-			<div id="gameAll" class="divstoHide">
+
+			<!-- Game -->
+			<div class="divstoHide" id="gameAll">
 				<div id="score">
 					<label for="lblScore">SCORE:</label>
 					<input id="lblScore" type="text" />
@@ -191,9 +183,12 @@
 		
 			</div>
 		</div>
+
+		<!-- Footer -->
 		<div class = "footer" id="footer">
 			<p>
-				Copyright &copy; 2022 All rights reserved
+				Copyright &copy; 2022 All rights reserved <br>
+				Ori Nachmani & Maya Sosnovik 
 			</p>
 			
 
