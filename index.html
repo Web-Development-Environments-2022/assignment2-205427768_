@@ -26,8 +26,8 @@
 			<il><a onclick="show('welcome')"> Welcome</a></il>
 			<il><a onclick="show('register')"> Register</a></il>
 			<il><a onclick="show('login')"> Login</a></il>
+			<il><a onclick="show('settings')"> settings</a></il>
 			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
-	
 		</div>
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
@@ -48,126 +48,149 @@
 		</div>
 	
 
-
-		<div class = "divstoHide" id="welcome">
-			<!--<img  class="pictuerWelcome" src="img/background.jpg" style="margin-top: 10%; width: 50%; height: 50%; " />-->
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<button id="btnRegister" class="glow-on-hover" onclick="show('register')"><a>Register</a></button>
-            <button id="btnLogin" class="glow-on-hover" onclick="show('login')"><a>Login</a></button>
-
-		</div>
+		<div class="content">
+			<div class = "divstoHide" id="welcome">
+				<img  class="pictuerWelcome" src="img/welcome.jpg" style="width: 40%; height: 40%; " />
+				<br>
+				<br>
+				<br>
+				<button id="btnRegister" class="glow-on-hover" onclick="show('register')"><a>Register</a></button>
+				<button id="btnLogin" class="glow-on-hover" onclick="show('login')"><a>Login</a></button>
+			</div>
 
 				
-		<div class = "divstoHide" id="register">
-			<form class = "registerForm" name="registerForm" >
-				<br><br>
-				<!-- <h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Register</h1> -->
-				<label for="username"><b>User Name</b></label>
-				<input type="text" placeholder="Choose a User Name" name="username" id="username">
-				<label for="password"><b>Password</b></label>
-				<input type="text" placeholder="Choose a Password" name="password" id="password">
-				<label for="email"><b>E-mail</b></label>
-				<input type="text" placeholder="Enter Your E-Mail" name="email" id="email">
-				<label for="firstname"><b>First Name</b></label>
-				<input type="text" placeholder="Enter Your First Name" name="firstname" id="firstname">
-				<label for="lastname"><b>Last Name</b></label>
-				<input type="text" placeholder="Enter Your Last Name" name="lastname" id="lastname">
-				<label for="date"><b>Date Of Birth</b></label>
-				<select id="days" name="days"></select>
-				<select id="months" name="months"></select>
-				<select id="years" name="years"></select>
-				<br><br>
-				<button  type="submit"  class="registerButton" >Submit</button>
-				<br>
-			</form>
-		</div>
+			<div class = "divstoHide" id="register">
+				<form class = "registerForm" name="registerForm" >
+					<br><br>
+					<!-- <h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Register</h1> -->
+					<label for="username"><b>User Name</b></label>
+					<input type="text" placeholder="Choose a User Name" name="username" id="username">
+					<label for="password"><b>Password</b></label>
+					<input type="text" placeholder="Choose a Password" name="password" id="password">
+					<label for="email"><b>E-mail</b></label>
+					<input type="text" placeholder="Enter Your E-Mail" name="email" id="email">
+					<label for="firstname"><b>First Name</b></label>
+					<input type="text" placeholder="Enter Your First Name" name="firstname" id="firstname">
+					<label for="lastname"><b>Last Name</b></label>
+					<input type="text" placeholder="Enter Your Last Name" name="lastname" id="lastname">
+					<label for="date"><b>Date Of Birth</b></label>
+					<select id="days" name="days"></select>
+					<select id="months" name="months"></select>
+					<select id="years" name="years"></select>
+					<br><br>
+					<button  type="submit"  class="registerButton" >Submit</button>
+					<br>
+				</form>
+			</div>
 
-		<div class = "divstoHide" id="login">
-			<form class = "loginForm" name="loginForm" >
-				<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Login</h1>
-				<label for="username"><b>User Name</b></label>
-				<input type="text" placeholder="Choose a User Name" name="usernameLogin" id="username">
-				<label for="password"><b>Password</b></label>
-				<input type="text" placeholder="Choose a Password" name="passwordLogin" id="password">
-				<br><br>
-				<button  type="submit"  class="loginButton" >Submit</button>
-			</form>
-		</div>
-
-
-
-		<br><br><br><br><br><br><br><br><br>
-		<div id="settings">
-			<label for="keyUp">up</label>
-			<input type="button" class="keys" id="keyUp" onkeydown="KeyUpdate(event,'UP')">
-			<label for="keyLeft">left</label>
-			<input type="button" class="keys" id="keyLeft" onkeydown="KeyUpdate(event,'LEFT')">
-			<label for="keyDown">down</label>
-			<input type="button" class="keys" id="keyDown" onkeydown="KeyUpdate(event,'DOWN')">
-			<label for="keyRight">right</label>
-			<input type="button" class="keys" id="keyRight" onkeydown="KeyUpdate(event,'RIGHT')">
+			<div class = "divstoHide" id="login">
+				<form class = "loginForm" name="loginForm" >
+					<h1 style="margin-left: 35%; font-size: 40px; font-family: Calibri;">Login</h1>
+					<label for="username"><b>User Name</b></label>
+					<input type="text" placeholder="Choose a User Name" name="usernameLogin" id="username">
+					<label for="password"><b>Password</b></label>
+					<input type="text" placeholder="Choose a Password" name="passwordLogin" id="password">
+					<br><br>
+					<button  type="submit"  class="loginButton" >Submit</button>
+				</form>
+			</div>
 
 
 
-
-
-			<table>
-				<tr>
-					<td class="column1"> <label for="lblNumOfBalls">number of balls:</label> </td>
-					<td class="column2"><input id="lblNumOfBalls" type="range" min="50" max="90" value="70" class="slider"></td>
-					<td class="column3"> Value:<span id="ballsNum"></span> </td>
-				</tr>
-				<tr>
-					<td class="column1"><label for="colorpicker1">5 points</label></td>
-					<td class="column2"><input type="color" id="colorpicker1" value="#0000ff"></td>
-					<td class="column3"></td>
-				</tr>
-				<tr>
-					<td class="column1"><label for="colorpicker2">15 points</label></td>
-					<td class="column2"><input type="color" id="colorpicker2" value="#00ff00"></td>
-					<td class="column3"></td>
-				</tr>
-				<tr>
-
-					<td class="column1"><label for="colorpicker3">25 points</label></td>
-					<td class="column2"><input type="color" id="colorpicker3" value="#ff0000"></td>
-					<td class="column3"></td>
-				</tr>
-				<!-- TO_do: Timer minimum 60 sec   --> 
-				<tr>
-					<td class="column1"><label for="gameTime">Set game time</label></td>
-					<td class="column2"><input type="number" id="gameTime" min="60" step="1" onfocus="this.previousValue = this.value" onkeydown="this.previousValue = this.value" oninput="validity.valid || (value = this.previousValue)"/></td>
-					<td class="column3"></td>
-
-				</tr>
-
-
-				<tr>
-					<td class="column1"><label for="lblNumOfMonsters">number of monsters:</label></td>
-					<td class="column2"><input id="lblNumOfMonsters" type="range" min="1" max="4" value="2" class="slider"></td>
-					<td class="column3">Value: <span id="monstersNum"></span></td>
-				</tr>
 			
-			
-			</table>
-		</div>
+			<div id="settings" class="divstoHide">
+				<form class="settingsForm">
+					<br><br><br>
+					Please enter the game keyboard
+					<table>
+						<tr>
+							<td colspan="3" class="keyColumn"> <label for="keyUp" class="labelUP">up</label>
+								<input type="button" class="keys" id="keyUp" onkeydown="KeyUpdate(event,'Up')"> 
+							</td>
+						</tr>
+						<tr>
+							<td class="keyColumn">
+								<label for="keyLeft" class="labelUP">left</label>
+								<input type="button" class="keys" id="keyLeft" onkeydown="KeyUpdate(event,'LEFT')">
+							</td>
+							<td class="keyColumn"></td>
+							<td class="keyColumn">
+								<label for="keyRight" class="labelUP">right</label>
+					<input type="button" class="keys" id="keyRight" onkeydown="KeyUpdate(event,'RIGHT')">
+								
+							</td>					
+						</tr>
+						<tr>
+							<td colspan="3" class="keyColumn">
+								<label for="keyDown" class="labelUP">down</label>
+								<input type="button" class="keys" id="keyDown" onkeydown="KeyUpdate(event,'DOWN')">
+							</td>
+						</tr>
+					</table>
+					
 
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
 
+					<table>
+						<tr>
+							<td class="column1"> <label for="lblNumOfBalls">number of balls:</label> </td>
+							<td class="column2"><input id="lblNumOfBalls" type="range" min="50" max="90" value="70" class="slider"></td>
+							<td class="column3"> Value:<span id="ballsNum"></span> </td>
+						</tr>
+						<tr>
+							<td class="column1"><label for="colorpicker1">5 points</label></td>
+							<td class="column2"><input type="color" id="colorpicker1" value="#0000ff"></td>
+							<td class="column3"></td>
+						</tr>
+						<tr>
+							<td class="column1"><label for="colorpicker2">15 points</label></td>
+							<td class="column2"><input type="color" id="colorpicker2" value="#00ff00"></td>
+							<td class="column3"></td>
+						</tr>
+						<tr>
+
+							<td class="column1"><label for="colorpicker3">25 points</label></td>
+							<td class="column2"><input type="color" id="colorpicker3" value="#ff0000"></td>
+							<td class="column3"></td>
+						</tr>
+						
+						<tr>
+							<td class="column1"><label for="gameTime">Set game time</label></td>
+							<td class="column2"><input type="number" id="gameTime" min="60" step="1" onfocus="this.previousValue = this.value" onkeydown="this.previousValue = this.value" oninput="validity.valid || (value = this.previousValue)"/></td>
+							<td class="column3"></td>
+
+						</tr>
+
+
+						<tr>
+							<td class="column1"><label for="lblNumOfMonsters">number of monsters:</label></td>
+							<td class="column2"><input id="lblNumOfMonsters" type="range" min="1" max="4" value="2" class="slider"></td>
+							<td class="column3">Value: <span id="monstersNum"></span></td>
+						</tr>
+						<tr>
+							<td><button type="button" id="startGame" class="glow-on-hover"><a>Start<br> Game</a></button> </td>
+							<td colspan="2"><button type="button" id="randomGame" class="glow-on-hover" onclick="generateRandomValues()"><a>Random</a></button> </td>
+						</tr>
+						
+					
+					</table>
+					
+				</form>
+			</div>
+			<div id="gameAll" class="divstoHide">
+				<div id="score">
+					<label for="lblScore">SCORE:</label>
+					<input id="lblScore" type="text" />
+				</div>
+				<div id="time">
+					<label for="lblTime">TIME:</label>
+					<input id="lblTime" type="text" />
+				</div>
+				<div id="game">
+					<canvas id="canvas" height="600" width="600"></canvas>
+				</div>
+		
+			</div>
+		</div>
 		<div class = "footer" id="footer">
 			<p>
 				Copyright &copy; 2022 All rights reserved

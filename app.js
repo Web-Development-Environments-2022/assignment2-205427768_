@@ -15,9 +15,11 @@ window.onclick = function(event) {
 	}
   }
 $(document).ready(function() {
-	show("welcome")
-	context = canvas.getContext("2d");
-	Start();
+	//show("welcome")
+	//context = canvas.getContext("2d");
+	//Start();
+
+
 	// Get the modal
 	var modal = document.getElementById("myModal");
 
@@ -43,13 +45,9 @@ $(document).ready(function() {
 			modal.style.display = "none";
 		}
 	}
+	updateBallsValue();
 
-	var sliderBalls = document.getElementById("lblNumOfBalls");
-	var outputBalls = document.getElementById("ballsNum");
-	outputBalls.innerHTML = sliderBalls.value;
-	sliderBalls.oninput = function() {
-		outputBalls.innerHTML = this.value;
-	}
+	updateMonsterValue();
 /*
 	let colorButton1 = document.getElementById("colorpicker1");
 	colorButton1.oninput = function() {
@@ -65,20 +63,34 @@ $(document).ready(function() {
 	}
 	*/
 
+	
+
+
+
+
+});
+function updateBallsValue(){
+	var sliderBalls = document.getElementById("lblNumOfBalls");
+	var outputBalls = document.getElementById("ballsNum");
+	outputBalls.innerHTML = sliderBalls.value;
+	sliderBalls.oninput = function() {
+		outputBalls.innerHTML = this.value;
+	}
+}
+function updateMonsterValue(){
 	var sliderMonsters = document.getElementById("lblNumOfMonsters");
 	var outputMonsters = document.getElementById("monstersNum");
 	outputMonsters.innerHTML = sliderMonsters.value;
 	sliderMonsters.oninput = function() {
 		outputMonsters.innerHTML = this.value;
 	}
+}
 
 
-
-
-});
-
-
-
+function updateTime(){
+	var textboxTime = document.getElementById("gameTime");
+	textboxTime.value = Math.floor(Math.random() * (600 - 60 + 1) + 60);
+}
 
 
 $(document).keydown(function(event) { 
@@ -128,7 +140,22 @@ function show(elementID){
 
 
 } 
-
+function generateRandomValues(){
+	document.getElementById("keyUp").value = "ArrowUp"
+	document.getElementById("keyLeft").value = "ArrowLeft"
+	document.getElementById("keyRight").value = "ArrowRight"
+	document.getElementById("keyDown").value = "ArrowDown"
+	//numberOfBalls
+	document.getElementById("lblNumOfBalls").value = Math.floor(Math.random() * (90 - 50 + 1) + 50)
+	updateBallsValue();
+	//numberOfMonsters
+	document.getElementById("lblNumOfMonsters").value = Math.floor(Math.random() * (4 - 1 + 1) + 1)
+	updateMonsterValue();
+	updateTime();
+	document.getElementById("colorpicker1").value = "#"+Math.floor(Math.random()*16777215).toString(16);
+	document.getElementById("colorpicker2").value = "#"+Math.floor(Math.random()*16777215).toString(16);
+	document.getElementById("colorpicker3").value = "#"+Math.floor(Math.random()*16777215).toString(16);
+}
 
 
 function Start() {
@@ -203,7 +230,7 @@ function findRandomEmptyCell(board) {
 
 function KeyUpdate(e,direction){
 
-	if(direction=="UP")
+	if(direction=="Up")
 	{
 		document.getElementById("keyUp").value = e.key
 	}

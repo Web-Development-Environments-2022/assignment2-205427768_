@@ -6,23 +6,23 @@ body{
 	text-align: center;
 
     background: #000;
-    font-family: 'Lexend Exa', sans-serif;
-
-	/*margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background: #000;*/
-	
+    font-family: "Oswald",sans-serif;
+    height: 100%;
+    min-height: 100%;
 }
+/*---------------------------------------------Welcome-------------------------------------------------------*/
+/*---------------------------------------------Register-------------------------------------------------------*/
+/*---------------------------------------------Login-------------------------------------------------------*/
+/*---------------------------------------------Settings-------------------------------------------------------*/
+
+
 table{
-    margin: o auto;
+    margin: 0 auto;
     align-self: center;
-    border-spacing: 20px;
+    border-spacing: 10px;
+}
+.keyColumn{
+    width: 60px;
 }
 #pac-man-logo1{
 	width: 176.46px;
@@ -36,16 +36,28 @@ table{
     float: left;
 }
 #settings{
-   /* background-color: #002bff; */
+   /* background-color: #002bff; 
    display: flex;
-   justify-content: center;
+   justify-content: center;*/
+    font-family: "Oswald",sans-serif;
+    font-size: 18px;
 }
+#settings label{
+    /* background-color: #002bff; */
+    display: block;
+    font-family: "Oswald",sans-serif;
+    font-size: 18px;
+ }
+ /*#settings .labelUP:after{  
+    content: ": "
+ }*/
 
 .header{
 	position: fixed;
 	top: 25px;
     height: 180px;
     align-items: center;
+    display: inline-block;
     /*direction: ltr;*/
     width: 100%;
     right: -15px;
@@ -66,23 +78,29 @@ div.headerRight{
 
 .topMenu{
     background:  #e9e513d8;
-  	font-family: 'Lexend Exa', sans-serif;
+  /*	font-family: 'Lexend Exa', sans-serif;*/
 	cursor: pointer;
 	position: fixed;
     width: 80%;
 	top: 80px;
 	left: 50%;
 	transform: translateX(-50%);
-	/*display: inline-block; */
+	display: inline-block; 
 	border: 2px solid #EBECF1;
 	border-radius: 25px;
 	/* animation: slide-in 1s ease-out; */
 	padding: 2px 20px;
 }
-#welcome{
-	display: none;
-    position: relative;
-    top: 100px;
+
+.content{
+   /* position: relative;*/
+    /*display: flex;*/
+    min-height: 100%;
+}
+
+
+.divstoHide{
+   margin-top: 100px;
 }
 .divstoHide a{
     padding: 14px 10px;
@@ -90,19 +108,20 @@ div.headerRight{
 	text-decoration: none;
    /* font-family: "Oswald",sans-serif;*/
 }
-#register{
+#register, #login, #settings, #gameAll{
 	display: none;
 }
-#login{
-	display: none;
-    width: 100%;
-}
+
 .footer{
-    display: block;
+
+    margin-top: auto;
+    position: absolute;
+    clear: both;
+   /* bottom: 0;*/
+   /* display: block;*/
     width: 100%;
     background-color: #ffd700;
     color: black;
-    position: relative;
     height: 80px;
     font-size: 1.1rem;
     text-align: center;
@@ -155,9 +174,9 @@ p {
 	
 }*/
 .keys{
-    width: 70px;
-    height: 70px;
-    background-color: blue;
+    width: 80px;
+    height: 30px;
+    background-color: yellow;
 }
 .slider {
     -webkit-appearance: none;
@@ -194,11 +213,17 @@ p {
     cursor: pointer;
   }
 
-
+#btnRegister, #btnLogin{
+    width: 200px;
+    height: 120px;
+}
+#startGame, #randomGame{
+    width: 180px;
+    height: 120px;
+}
 
 .glow-on-hover {
-    width: 250px;
-    height: 150px;
+   
     border: none;
     outline: none;
     color: #fff;
@@ -207,7 +232,7 @@ p {
     position: relative;
     z-index: 0;
     border-radius: 10px;
-	margin: 50px 50px 50px 50px;
+	margin: 20px 20px 20px 20px;
 }
 
 .glow-on-hover:before {
@@ -334,7 +359,15 @@ p {
 }
 
 
-
+.settingsForm
+{
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 5%;
+    background-color: rgba(99, 100, 95, 0.459);
+    width: 550px;
+    height: 700px;
+}
 .registerForm
 {
     border-radius: 5px;
