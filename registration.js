@@ -134,8 +134,8 @@ $( document ).ready(function() {
                 form[0].reset();
             }
             else if(password == userPassword){
-                //show('setting');
-                alert("yes");
+                show('Settings');
+                //alert("yes");
             }
             else{
                 form[0].reset();
