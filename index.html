@@ -203,26 +203,63 @@
 
 			<!-- Game -->
 			<div class="divstoHide" id="gameAll">
-				<div id="score">
-					<label for="lblScore">SCORE:</label>
-					<input id="lblScore" type="text" />
-				</div>
-				<div id="time">
-					<label for="lblTime">TIME:</label>
-					<input id="lblTime" type="text" />
-				</div>
+				<table style="background-color: rgba(187, 182, 182, 0.945); border: 1px; border-style: dashed; margin-left: 5%; width: 25%;" class = "gameDetails" id = "gameDetails">
+					<tr>
+						<td>
+							<div id="User">
+								<label for="lblUser">USER:</label>
+								<input id="lblUser" type="text"/>
+							</div>
+						</td>						
+					</tr>
+					
+					<tr>
+						<td>
+							<div id="score">
+								<label for="lblScore">SCORE:</label>
+								<input id="lblScore" type="text" />
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<div id="time">
+								<label for="lblTime">TIME:</label>
+								<input id="lblTime" type="text" />
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<div id="lives">
+								<label for="lbllives">LIVES:</label>
+								<div id = "live">
+									<td>
+										<img class = "live_img" id="life1" src="img/lifeOne.png" style="width:25px" alt="logo" />
+										<img class = "live_img"  id="life2" src="img/lifeOne.png" style="width:25px" alt="logo" />
+										<img class = "live_img"  id="life3" src="img/lifeOne.png" style="width:25px" alt="logo" />
+										<img class = "live_img"  id="life4" src="img/lifeOne.png" style="width:25px" alt="logo" />
+										<img class = "live_img"  id="life5" src="img/lifeOne.png" style="width:25px" alt="logo" />
+										<img class = "live_img"  id="life6" src="img/lifeOne.png" style="width:25px" alt="logo" hidden />
+										<img class = "live_img"  id="life7" src="img/lifeOne.png" style="width:25px" alt="logo" hidden/>
+									</td>
+								</div>>
+							</div>
+						</td>			
+					</tr>
+				</table>
 				<div id="game">
 					<canvas id="canvas" height="600" width="600"></canvas>
 				</div>
-		
 			</div>
-		</div>
 
 		<!-- Footer -->
 		<div class = "footer" id="footer">
 			<p>
 				Copyright &copy; 2022 All rights reserved <br>
-				Ori Nachmani & Maya Sosnovik 
+				<b>Ori Nachmani & Maya Sosnovik <b>
 			</p>
 			
 

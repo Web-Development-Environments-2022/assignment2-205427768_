@@ -142,6 +142,13 @@ div.headerRight{
 	display: none;
 }
 
+
+/* #score, #time{
+    height: 100px;
+    color: #002bff;
+    font-size: x-small;
+} */
+
 .footer{
 
     margin-bottom: 0vmax; 
@@ -407,12 +414,13 @@ p {
 }
 
 label{
-	margin-left: 2%;
+	margin-left: 1%;
 	font-family: cursive;
 	letter-spacing: 1px;
     color: rgb(255, 255, 255);
     margin-left: 5%;
     font-size: 20px;
+    /* background-color: rgb(168, 145, 12); */
 }
 
 input[type = "text"]
@@ -479,4 +487,19 @@ form .error {
 	background: #2c3e50;
 	overflow: hidden;
 	border-radius: .25em;
+}
+
+
+#lblTime, #lblScore, #lblUser, #lbllives
+{
+    width: 90px;
+    height: 25px;
+    margin-left: 0.5%;
+    color: gold;
+    font-weight: bolder;
+    font-family: Calibri;
+    font-size: 25px;
+    background: transparent;
+    border: none;
+    font-display: inherit;
 }

@@ -196,8 +196,6 @@ function show(elementID){
 //		document.getElementById("loginID").style.display ="block"
 //	}
 
-
-
 } 
 
 function startNewGame(){
