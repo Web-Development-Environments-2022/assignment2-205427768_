@@ -32,7 +32,10 @@ var color25 = "#ff0000";
 var food_remain_5;
 var food_remain_15;
 var food_remain_25; 
-
+var points50 = new Object();
+var img50;
+var interval50;
+var eaten50;
 
 
 var gameTime;
@@ -321,6 +324,8 @@ function Start() {
 	var pacman_remain = 1;
 	start_time = new Date();
 	currMonster = 1;
+	eaten50 = false;
+	createImages();
 	/*board[0] =  [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
 	board[1] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
 	board[2] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
@@ -432,7 +437,10 @@ function Start() {
 			}
 					
 
-
+			else if(j ==10 && i==10){
+				points50.i = i;
+				points50.j = j;
+			}
 
 
 			else {
@@ -488,7 +496,14 @@ function Start() {
 		false
 	);
 	interval = setInterval(UpdatePosition, 170);
+	interval50 = setInterval(UpdatePosition50, 700);
 }
+
+function createImages(){
+	img50 = new Image();
+	img50.src = "img/50Points.png"
+}
+
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * (rows-1) + 1);
@@ -663,6 +678,11 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 25) {
 		score+=25;
 	}
+	if (shape.i == points50.i && shape.j == points50.j){
+		score+=50;
+		window.clearInterval(interval50);
+		eaten50 = true;
+	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
@@ -675,7 +695,40 @@ function UpdatePosition() {
 	} else 
 	{
 		Draw(direction);
+		if(!eaten50){
+			context.drawImage(img50, points50.i*width_cell, points50.j*height_cell,width_cell,height_cell);
+		}
 	//	Draw();
+	}
+}
+function UpdatePosition50(){
+	var moved50  = false;
+	while(!moved50){
+		var x = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+		if (x == 1) {
+			if (points50.j > 0 && board[points50.i][points50.j - 1] != 4){ //&& board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				points50.j--;
+				moved50  = true;
+			}
+		}
+		if (x == 2) {
+			if (points50.j < rows-1 && board[points50.i][points50.j + 1] != 4){// && board[points50.i][spoints50hape.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				points50.j++;
+				moved50  = true;
+			}
+		}
+		if (x == 3) {
+			if (points50.i > 0 && board[points50.i - 1][points50.j] != 4){//&& board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				points50.i--;
+				moved50  = true;
+			}
+		}
+		if (x == 4) {
+			if (points50.i < cols-1 && board[points50.i + 1][points50.j] != 4){// && board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				points50.i++;
+				moved50  = true;
+			}
+		}
 	}
 }
 
