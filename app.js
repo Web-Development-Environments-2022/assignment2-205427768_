@@ -39,18 +39,18 @@ var eaten50;
 
 
 var gameTime;
-//monsters
-var monstersNum = 2;
-var currMonster = 1;
-var monsterArray;
-var shapeMonster1=new Object();
-var shapeMonster2=new Object();
-var shapeMonster3=new Object();
-var shapeMonster4=new Object();
-var imgMonster1;
-var imgMonster2;
-var imgMonster3;
-var imgMonster4;
+//ghosts
+var ghostNum = 2;
+var currGhost = 1;
+var ghostArray;
+var shapeGhost1=new Object();
+var shapeGhostr2=new Object();
+var shapeGhost3=new Object();
+var shapeGhost4=new Object();
+var imgGhost1;
+var imgGhost2;
+var imgGhost3;
+var imgGhost4;
 
 
 
@@ -113,9 +113,9 @@ $(document).ready(function() {
 			modal.style.display = "none";
 		}
 	}
-	updateBallsValue();
+	//updateBallsValue();
 
-	updateMonsterValue();
+	//updateGhostValue();
 /*
 	let colorButton1 = document.getElementById("colorpicker1");
 	colorButton1.oninput = function() {
@@ -145,19 +145,19 @@ function updateBallsValue(){
 		outputBalls.innerHTML = this.value;
 	}
 }
-function updateMonsterValue(){
-	var sliderMonsters = document.getElementById("lblNumOfMonsters");
-	var outputMonsters = document.getElementById("monstersNum");
-	outputMonsters.innerHTML = sliderMonsters.value;
-	sliderMonsters.oninput = function() {
-		outputMonsters.innerHTML = this.value;
+function updateGhostValue(){
+	var sliderGhosts = document.getElementById("lblNumOfMonsters");
+	var outputGhosts = document.getElementById("monstersNum");
+	outputGhosts.innerHTML = sliderGhosts.value;
+	sliderGhosts.oninput = function() {
+		outputGhosts.innerHTML = this.value;
 	}
 }
 
 
 function updateTime(){
 	var textboxTime = document.getElementById("gameTime");
-	textboxTime.value = Math.floor(Math.random() * (600 - 60 + 1) + 60);
+	textboxTime.value = Math.floor(Math.random() * (300 - 60 + 1) + 60);
 }
 
 
@@ -181,6 +181,14 @@ function show(elementID){
 	//header.style.display = 'block'
 	//topMenu.style.display = 'block'
 	e.style.display = 'block';
+	if(elementID=="Settings"){
+		updateBallsValue();
+		updateGhostValue();
+	}
+
+	window.clearInterval(interval);
+	window.clearInterval(interval50);
+	window.clearInterval(intervalClock);
 
 
 
@@ -223,9 +231,9 @@ function startNewGame(){
 	//gameTime
 	gameTime =  document.getElementById("gameTime").value;
 
-	//numberofMonsters
-	monstersNum = document.getElementById("lblNumOfMonsters").value;
-	currMonster = 1
+	//numberofGhosts
+	ghostNum = document.getElementById("lblNumOfMonsters").value;
+	currGhost = 1
 
 	$(document).ready(function() {
 		context = canvas.getContext("2d");
@@ -233,7 +241,8 @@ function startNewGame(){
 		height_canvas=canvas.height;
 		width_cell=width_canvas/rows;
 		height_cell=height_canvas/cols;
-		//updateSetting(); //??
+
+		document.getElementById("lblUser").value = document.getElementsByName("usernameLogin")[0].value;
 		document.getElementById("lblKeyUp").value =document.getElementById("keyUp").value;
 		document.getElementById("lblKeyLeft").value =document.getElementById("keyLeft").value;
 		document.getElementById("lblKeyRight").value =document.getElementById("keyRight").value;
@@ -244,6 +253,10 @@ function startNewGame(){
 		document.getElementById("lblColor3").value =document.getElementById("colorpicker3").value;
 		document.getElementById("lblMonstersNum").value =document.getElementById("lblNumOfMonsters").value;
 		show("gameAll");
+		var form = document.getElementById("settingsForm");
+		document.getElementById("lblNumOfMonsters").value= 2;
+		document.getElementById("lblNumOfBalls").value =70;
+		form.reset();
 		Start();
 	});
 	
@@ -257,9 +270,9 @@ function generateRandomValues(){
 	//numberOfBalls
 	document.getElementById("lblNumOfBalls").value = Math.floor(Math.random() * (90 - 50 + 1) + 50)
 	updateBallsValue();
-	//numberOfMonsters
+	//numberOfGhosts
 	document.getElementById("lblNumOfMonsters").value = Math.floor(Math.random() * (4 - 1 + 1) + 1)
-	updateMonsterValue();
+	updateGhostValue();
 	updateTime();
 	document.getElementById("colorpicker1").value = "#"+Math.floor(Math.random()*16777215).toString(16);
 	document.getElementById("colorpicker2").value = "#"+Math.floor(Math.random()*16777215).toString(16);
@@ -327,19 +340,25 @@ function Start() {
 }
 */
 function Start() {
-	//window.focus();
+	window.onkeydown = function (e) {
+		if (e.key == 'ArrowUp' || e.key =='ArrowDown' || e.key == 'ArrowLeft' || e.key == 'ArrowRight') {
+			e.view.event.preventDefault();
+		}
+	}
+	
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
 	var cnt = rows*cols;
 	direction = 4;
 	var food_remain = 50;
+	ghostArray = new Array();
 	food_remain_5 = ball5Amount;
 	food_remain_15 = ball15Amount;
 	food_remain_25 = ball25Amount;
 	var pacman_remain = 1;
 	start_time = new Date();
-	currMonster = 1;
+	currGhost = 1;
 	eaten50 = false;
 	createImages();
 	/*board[0] =  [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
@@ -371,12 +390,15 @@ function Start() {
 			//board[i][j]=4;
 			//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 			if (i == 1 && j == 1 || i==1 && j==20 || i==20 && j==1 || i==20 && j==20){
-				if(currMonster <= monstersNum)
+				if(currGhost <= ghostNum) 
 				{
-					eval("shapeMonster"+currMonster).j = j;
-					eval("shapeMonster"+currMonster).i = i;
-					currMonster++;
-					board[i][j] = 2;
+				//	eval("shapeGhost"+currGhost).j = j; 
+				//	eval("shapeGhost"+currGhost).i = i;
+					ghostArray[currGhost] = new Object();
+					ghostArray[currGhost].i = i;
+					ghostArray[currGhost].j = j;
+					currGhost++;
+					//board[i][j] = 2;
 				} 
 			}
 			
@@ -523,6 +545,19 @@ function createImages(){
 
 	img_clock = new Image();
 	img_clock.src = "img/clock.png";
+
+	imgGhost1 = new Image();
+	imgGhost1.src = "img/ghost1.png";
+
+	imgGhost2 = new Image();
+	imgGhost2.src = "img/ghost2.png";
+
+	imgGhost3 = new Image();
+	imgGhost3.src = "img/ghost3.png";
+
+	imgGhost4 = new Image();
+	imgGhost4.src = "img/ghost4.png";
+
 }
 
 
@@ -712,9 +747,14 @@ function UpdatePosition() {
 		score+=25;
 	}
 	if (shape.i == points50.i && shape.j == points50.j){
-		score+=50;
-		window.clearInterval(interval50);
 		eaten50 = true;
+		window.clearInterval(interval50);
+		score+=50;
+		points50.i = null;
+		points50.j = null;
+
+		
+		
 	}
 	if (board[shape.i][shape.j] == 6) {
 		board[shape.i][shape.j] == 0;
@@ -731,6 +771,7 @@ function UpdatePosition() {
 		else{
 			alert("Winner!!!");
 		}
+		show('gameOver');
 	}
 	/*if (score >= 20 && time_elapsed <= 10) {
 		pac_color = "green";
@@ -742,12 +783,21 @@ function UpdatePosition() {
 	else 
 	{
 		Draw(direction);
+		DrawGhosts();
 		if(!eaten50){
 			context.drawImage(img50, points50.i*width_cell, points50.j*height_cell,width_cell,height_cell);
 		}
 	//	Draw();
 	}
 }
+
+function DrawGhosts(){
+	for (var k = 1; k <= ghostNum; k++) { imgGhost1
+		context.drawImage(eval("imgGhost"+k), ghostArray[k].i*width_cell, ghostArray[k].j*height_cell,width_cell,height_cell);
+	}
+}
+
+
 function UpdatePosition50(){
 	var moved50  = false;
 	while(!moved50){

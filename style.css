@@ -138,7 +138,7 @@ div.headerRight{
 	text-decoration: none;
    /* font-family: "Oswald",sans-serif;*/
 }
-#register, #login, #settings, #gameAll{
+#register, #login, #settings, #gameAll, #gameOver{
 	display: none;
 }
 
@@ -503,4 +503,17 @@ form .error {
     background: transparent;
     border: none;
     font-display: inherit;
+}
+.game-child1{
+    width: 400px;
+    float: left;
+}
+.game-child2{
+    width: 650px;
+    padding:5px;
+}
+
+.game-container{
+    padding: 10px;
+    display: flex;
 }

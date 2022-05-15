@@ -25,7 +25,7 @@
 			<il><a onclick="show('register')"> Register</a></il>
 			<il><a onclick="show('login')"> Login</a></il>
 			<!-- <il><a onclick="show('settings')"> settings</a></il> -->
-			<il><a onclick="show('gameAll')"> Game</a></il>
+			<!--<il><a onclick="show('gameAll')"> Game</a></il>-->
 			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
 		</div>
 		<!-- About -->
@@ -96,7 +96,7 @@
 
 			<!-- Settings -->
 			<div class="divstoHide"  id="Settings" hidden>
-				<form class="settingsForm">
+				<form class="settingsForm" id="settingsForm">
 					<h1 style="font-size: 40px; font-family: Calibri;">Settings</h1>
 					<br>
 					Please enter the game keyboard
@@ -203,7 +203,9 @@
 
 			<!-- Game -->
 			<div class="divstoHide" id="gameAll">
-				<table style="background-color: rgba(187, 182, 182, 0.945); border: 1px; border-style: dashed; margin-left: 5%; width: 25%;" class = "gameDetails" id = "gameDetails">
+				<div class="game-container">
+				<div class="game-child1">
+				<table style="background-color: rgba(187, 182, 182, 0.945); border: 1px; border-style: dashed; margin-left: 5%; width: 100%;" class = "gameDetails" id = "gameDetails">
 					<tr>
 						<div id="User"></div>
 							<td>
@@ -325,13 +327,20 @@
 						</td>
 					</tr>
 						
-					
+				
 				</table>
-				<div id="game">
+			</div>
+				<div id="game" class="game-child2">
 					<canvas id="canvas" height="600" width="600"></canvas>
 				</div>
 			</div>
-
+			</div>
+		<!-- Game-Over -->
+		<div class="divstoHide" id="gameOver">
+			<img  src="img/Game-Over.png" style="width: 512px; height: 512px;" />
+			<br> 
+			<button class="glow-on-hover" onclick="show('Settings')"><a>New Game</a></button>
+		</div>
 		<!-- Footer -->
 		<div class = "footer" id="footer">
 			<p>
