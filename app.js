@@ -52,6 +52,15 @@ var imgMonster2;
 var imgMonster3;
 var imgMonster4;
 
+
+
+
+var img_clock;
+var intervalClock;
+var ClockAppear;
+var time_elapsed_clock;
+
+
 var width_canvas;
 var height_canvas;
 var width_cell;
@@ -75,8 +84,8 @@ $(document).ready(function() {
 	width_cell=width_canvas/rows;
 	height_cell=height_canvas/cols;
 	//updateSetting();
-	show("gameAll");
-	Start();
+	//show("gameAll");
+	//Start();
 
 
 	// Get the modal
@@ -224,7 +233,16 @@ function startNewGame(){
 		height_canvas=canvas.height;
 		width_cell=width_canvas/rows;
 		height_cell=height_canvas/cols;
-		//updateSetting();
+		//updateSetting(); //??
+		document.getElementById("lblKeyUp").value =document.getElementById("keyUp").value;
+		document.getElementById("lblKeyLeft").value =document.getElementById("keyLeft").value;
+		document.getElementById("lblKeyRight").value =document.getElementById("keyRight").value;
+		document.getElementById("lblKeyDown").value =document.getElementById("keyDown").value;
+		document.getElementById("lblballsNum").value =document.getElementById("lblNumOfBalls").value;
+		document.getElementById("lblColor1").value =document.getElementById("colorpicker1").value;
+		document.getElementById("lblColor2").value =document.getElementById("colorpicker2").value;
+		document.getElementById("lblColor3").value =document.getElementById("colorpicker3").value;
+		document.getElementById("lblMonstersNum").value =document.getElementById("lblNumOfMonsters").value;
 		show("gameAll");
 		Start();
 	});
@@ -495,11 +513,16 @@ function Start() {
 	);
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
+	intervalClock = setInterval(updatePositionClock, 30000);
 }
 
 function createImages(){
+
 	img50 = new Image();
-	img50.src = "img/50Points.png"
+	img50.src = "img/50Points.png";
+
+	img_clock = new Image();
+	img_clock.src = "img/clock.png";
 }
 
 
@@ -555,7 +578,7 @@ function GetKeyPressed() {
 function Draw(direction) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	lblTime.value = time_elapsed;
+	lblTime.value = gameTime - time_elapsed; //????
 	for (var i = 0; i < rows; i++) {
 		for (var j = 0; j < cols; j++) {
 			var center = new Object();
@@ -636,6 +659,18 @@ function Draw(direction) {
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
+			var currentTime1 = new Date();
+			time_elapsed_clock = (currentTime1 - ClockAppear)/1000 ;
+			if(board[i][j] == 6)
+			{
+				if(time_elapsed_clock<12){
+					context.drawImage(img_clock,center.x-width_cell/2, center.y-height_cell/2,width_cell,height_cell);
+				}
+				 	
+				else{
+					board[i][j]=0
+				}	
+			}		
 		}
 	}
 	
@@ -681,16 +716,30 @@ function UpdatePosition() {
 		window.clearInterval(interval50);
 		eaten50 = true;
 	}
+	if (board[shape.i][shape.j] == 6) {
+		board[shape.i][shape.j] == 0;
+		gameTime=Number(gameTime)+Number(20);
+		document.getElementById("lblTime").value =timeGame;
+	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 20 && time_elapsed <= 10) {
-		pac_color = "green";
+	if(time_elapsed >= gameTime){
+		if(score< 100 ){
+			alert("You are better than "+score+" points!");
+		}
+		else{
+			alert("Winner!!!");
+		}
 	}
-	if (score == 50) {
+	/*if (score >= 20 && time_elapsed <= 10) {
+		pac_color = "green";
+	}*/
+	/*if (score == 50) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
-	} else 
+	} */
+	else 
 	{
 		Draw(direction);
 		if(!eaten50){
@@ -709,24 +758,30 @@ function UpdatePosition50(){
 				moved50  = true;
 			}
 		}
-		if (x == 2) {
+		else if (x == 2) {
 			if (points50.j < rows-1 && board[points50.i][points50.j + 1] != 4){// && board[points50.i][spoints50hape.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
 				points50.j++;
 				moved50  = true;
 			}
 		}
-		if (x == 3) {
+		else if (x == 3) {
 			if (points50.i > 0 && board[points50.i - 1][points50.j] != 4){//&& board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
 				points50.i--;
 				moved50  = true;
 			}
 		}
-		if (x == 4) {
+		else if (x == 4) {
 			if (points50.i < cols-1 && board[points50.i + 1][points50.j] != 4){// && board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
 				points50.i++;
 				moved50  = true;
 			}
 		}
 	}
+}
+function updatePositionClock()
+{
+	ClockAppear=new Date();
+	var emptyCell = findRandomEmptyCell(board);
+	board[emptyCell[0]][emptyCell[1]]=6;
 }
 

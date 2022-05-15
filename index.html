@@ -138,18 +138,18 @@
 						</tr>
 						<tr>
 							<td class="column1"><label for="colorpicker1">5 points</label></td>
-							<td class="column2"><input type="color" id="colorpicker1" value="#0000ff"></td>
+							<td class="column2"><input type="color" id="colorpicker1" class="colorpicker" value="#0000ff"></td>
 							<td class="column3"></td>
 						</tr>
 						<tr>
 							<td class="column1"><label for="colorpicker2">15 points</label></td>
-							<td class="column2"><input type="color" id="colorpicker2" value="#00ff00"></td>
+							<td class="column2"><input type="color" id="colorpicker2" class="colorpicker" value="#00ff00"></td>
 							<td class="column3"></td>
 						</tr>
 						<tr>
 
 							<td class="column1"><label for="colorpicker3">25 points</label></td>
-							<td class="column2"><input type="color" id="colorpicker3" value="#ff0000"></td>
+							<td class="column2"><input type="color" id="colorpicker3" class="colorpicker" value="#ff0000"></td>
 							<td class="column3"></td>
 						</tr>
 						
@@ -205,50 +205,127 @@
 			<div class="divstoHide" id="gameAll">
 				<table style="background-color: rgba(187, 182, 182, 0.945); border: 1px; border-style: dashed; margin-left: 5%; width: 25%;" class = "gameDetails" id = "gameDetails">
 					<tr>
-						<td>
-							<div id="User">
+						<div id="User"></div>
+							<td>
 								<label for="lblUser">USER:</label>
-								<input id="lblUser" type="text"/>
-							</div>
-						</td>						
+							</td>
+							<td>
+								<input id="lblUser" type="text" class = "settingsGame"/>
+							</td>
+						</div>						
 					</tr>
-					
 					<tr>
-						<td>
-							<div id="score">
+						<div id="score">
+							<td>
 								<label for="lblScore">SCORE:</label>
-								<input id="lblScore" type="text" />
-							</div>
-						</td>
+							</td>
+							<td>
+								<input id="lblScore" type="text" class = "settingsGame" readonly/>
+							</td>	
+						</div>
 					</tr>
 
 					<tr>
-						<td>
-							<div id="time">
+						<div id="time" >
+							<td>
 								<label for="lblTime">TIME:</label>
-								<input id="lblTime" type="text" />
-							</div>
-						</td>
+							</td>
+							<td>
+								<input id="lblTime" type="text" class = "settingsGame" readonly/>
+							</td>
+						</div>	
 					</tr>
 
 					<tr>
 						<td>
-							<div id="lives">
-								<label for="lbllives">LIVES:</label>
-								<div id = "live">
-									<td>
-										<img class = "live_img" id="life1" src="img/lifeOne.png" style="width:25px" alt="logo" />
-										<img class = "live_img"  id="life2" src="img/lifeOne.png" style="width:25px" alt="logo" />
-										<img class = "live_img"  id="life3" src="img/lifeOne.png" style="width:25px" alt="logo" />
-										<img class = "live_img"  id="life4" src="img/lifeOne.png" style="width:25px" alt="logo" />
-										<img class = "live_img"  id="life5" src="img/lifeOne.png" style="width:25px" alt="logo" />
-										<img class = "live_img"  id="life6" src="img/lifeOne.png" style="width:25px" alt="logo" hidden />
-										<img class = "live_img"  id="life7" src="img/lifeOne.png" style="width:25px" alt="logo" hidden/>
-									</td>
-								</div>>
-							</div>
-						</td>			
+							<label for="lbllives">LIVES:</label>
+						</td>
+						<div id = "live" class = "settingsGame">
+							<td>
+								<img class = "live_img" id="life1" src="img/lifeOne.png" style="width:25px" alt="logo" />
+								<img class = "live_img"  id="life2" src="img/lifeOne.png" style="width:25px" alt="logo" />
+								<img class = "live_img"  id="life3" src="img/lifeOne.png" style="width:25px" alt="logo" />
+								<img class = "live_img"  id="life4" src="img/lifeOne.png" style="width:25px" alt="logo" />
+								<img class = "live_img"  id="life5" src="img/lifeOne.png" style="width:25px" alt="logo" />
+								<img class = "live_img"  id="life6" src="img/lifeOne.png" style="width:25px" alt="logo" hidden />
+								<img class = "live_img"  id="life7" src="img/lifeOne.png" style="width:25px" alt="logo" hidden/>
+							</td>
+						</div>		
 					</tr>
+					<tr>
+						<td>
+							<label>Up:</label>
+						</td>
+						<td>
+							<input id="lblKeyUp"  type="text" class = "settingsGame" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Left:</label>
+						</td>
+						<td>
+							<input id="lblKeyLeft" value="Arrow Left" type="text" class = "settingsGame" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Right:</label>
+						</td>
+						<td>
+							<input id="lblKeyRight" value="Arrow Right" type="text" class = "settingsGame" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Down:</label>
+						</td>
+						<td>
+							<input id="lblKeyDown" value="Arrow Down" type="text" class = "settingsGame" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>number of balls:</label>
+						</td>
+						<td>
+							<input id="lblballsNum" type="text" class = "settingsGame" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>5 points:</label>
+						</td>
+						<td>
+							<input id="lblColor1" type="color" class="colorpicker" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>15 points:</label>
+						</td>
+						<td>
+							<input id="lblColor2" type="color" class="colorpicker" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>25 points:</label>
+						</td>
+						<td>
+							<input id="lblColor3" type="color" class="colorpicker" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>number of monsters:</label>
+						</td>
+						<td>
+							<input id="lblMonstersNum" type="text" class = "settingsGame" disabled/>
+						</td>
+					</tr>
+						
+					
 				</table>
 				<div id="game">
 					<canvas id="canvas" height="600" width="600"></canvas>

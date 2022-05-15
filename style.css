@@ -371,7 +371,7 @@ p {
   }
 
 
-  #colorpicker1, #colorpicker2, #colorpicker3 {
+  .colorpicker {
     border-radius: 50%;
     height: 30px;
     width: 30px;
@@ -379,14 +379,14 @@ p {
     outline: none;
     -webkit-appearance: none;
 }
-#colorpicker1:hover, #colorpicker2:hover, #colorpicker3:hover{
+.colorpicker:hover{
     cursor: pointer;
 }
 
-#colorpicker1::-webkit-color-swatch-wrapper , #colorpicker2::-webkit-color-swatch-wrapper, #colorpicker3::-webkit-color-swatch-wrapper {
+.colorpicker::-webkit-color-swatch-wrapper{
     padding: 0; 
 }
-#colorpicker1::-webkit-color-swatch, #colorpicker2::-webkit-color-swatch, #colorpicker3::-webkit-color-swatch {
+.colorpicker::-webkit-color-swatch {
     border: none;
     border-radius: 50%;
 }
@@ -490,7 +490,8 @@ form .error {
 }
 
 
-#lblTime, #lblScore, #lblUser, #lbllives
+/*#lblTime, #lblScore, #lblUser, #lbllives*/
+.settingsGame
 {
     width: 90px;
     height: 25px;
