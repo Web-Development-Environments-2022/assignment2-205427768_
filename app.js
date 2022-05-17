@@ -117,23 +117,6 @@ $(document).ready(function() {
 			modal.style.display = "none";
 		}
 	}
-	//updateBallsValue();
-
-	//updateGhostValue();
-/*
-	let colorButton1 = document.getElementById("colorpicker1");
-	colorButton1.oninput = function() {
-		colorDiv.style.color = colorButton.value;
-	}
-	let colorButton2 = document.getElementById("colorpicker1");
-	colorButton2.oninput = function() {
-		colorDiv.style.color = colorButton.value;
-	}
-	let colorButton3 = document.getElementById("colorpicker1");
-	colorButton3.oninput = function() {
-		colorDiv.style.color = colorButton.value;
-	}
-	*/
 });
 
 function updateBallsValue(){
@@ -165,16 +148,14 @@ $(document).keydown(function(event) {
 });
 
 function show(elementID){
-
 	var e = document.getElementById(elementID);
 	$('div.divstoHide').hide();
 	e.style.display = 'block';
-
 	if(elementID=="Settings"){
 		updateBallsValue();
 		updateGhostValue();
 	}
-
+	
 	window.clearInterval(interval);
 	window.clearInterval(interval50);
 	window.clearInterval(intervalClock);
@@ -523,17 +504,15 @@ function createSounds(){
 
 function stopSound(){
 	sound_play.pause();
-	// playSoundBoll=false;
-	// $("#stopSound").hide();
-	// $("#playSound").show();
-
-
+	playSoundBoll=false;
+	$("#stopSound").hide();
+	$("#playSound").show();
 }
 function playSound(){
 	sound_play.play();
-	// playSoundBoll=true;
-	// $("#playSound").hide();
-	// $("#stopSound").show();
+	playSoundBoll=true;
+	$("#playSound").hide();
+	$("#stopSound").show();
 
 }
 
@@ -993,6 +972,8 @@ function findRandomGhostCell(ghost){
 function resumeGame(){
 	$("#pauseGame").hide();
 	$("#playGame").show();
+	stopSound();
+	$("#playSound").show();
 	window.clearInterval(interval);
 	window.clearInterval(interval50);
 	window.clearInterval(intervalClock);
@@ -1003,11 +984,12 @@ function resumeGame(){
 function playGame(){
 	$("#playGame").hide();
 	$("#pauseGame").show();
+	playSound();
+	$("#stopSound").show();
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
 	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
 	document.getElementById("canvas").disabled = False;
-	
 }
 	

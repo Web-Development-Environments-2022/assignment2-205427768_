@@ -425,7 +425,7 @@ label{
     /* background-color: rgb(168, 145, 12); */
 }
 
-input[type = "text"]
+input[type = "text"], input[type="password"]
 {
     width: 90%;
     text-align: left;

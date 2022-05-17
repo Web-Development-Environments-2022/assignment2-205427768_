@@ -37,8 +37,7 @@
 	  				<h2>Modal Header</h2>
 				</div>
 				<div class="modal-body">
-	  				<p>Some text in the Modal Body</p>
-	  				<p>Some other text...</p>
+	  				<p></p>
 				</div>
 				<div class="modal-footer">
 	  				<h3>Modal Footer</h3>
@@ -64,7 +63,7 @@
 					<label for="username"><b>User Name</b></label>
 					<input type="text" placeholder="Choose a User Name" name="username" id="username">
 					<label for="password"><b>Password</b></label>
-					<input type="text" placeholder="Choose a Password" name="password" id="password">
+					<input type="password" placeholder="Choose a Password" name="password" id="password">
 					<label for="email"><b>E-mail</b></label>
 					<input type="text" placeholder="Enter Your E-Mail" name="email" id="email">
 					<label for="firstname"><b>First Name</b></label>
@@ -88,7 +87,7 @@
 					<label for="username"><b>User Name</b></label>
 					<input type="text" placeholder="Choose a User Name" name="usernameLogin" id="username">
 					<label for="password"><b>Password</b></label>
-					<input type="text" placeholder="Choose a Password" name="passwordLogin" id="password">
+					<input type="password" placeholder="Choose a Password" name="passwordLogin" id="password">
 					<br><br>
 					<button  type="submit"  class="loginButton" >Submit</button>
 				</form>
@@ -203,10 +202,14 @@
 
 			<!-- Game -->
 			<div class="divstoHide" id="gameAll">
-				<div id="game" style="position: fixed; margin-left: 33%;">
+				<div id="game" style="position: absolute; margin-left: 33%;">
 					<canvas id="canvas" height="600" width="600"></canvas>
-					<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a>Pause</a></button>
-					<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a>Play Game</a></button>
+					<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a style="font-size:230%;">Pause Game</a></button>
+					<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a style="font-size:230%;">Play Game</a></button>
+					
+					<button id="stopSound" class="glow-on-hover"  onclick="stopSound()"><a style="font-size:230%;">Stop Music</a></button>
+					<button id="playSound" class="glow-on-hover" onclick="playSound()" hidden><a style="font-size:230%;">Play Music</a></button>
+					<!-- <td rowspan="10"><input hidden id="playSound" type="image" /*onclick="playSound()"*/ src="img/soundOff.png" width="48" height="48"></td> -->
 				</div> 
 				<table style="text-align: left; background-color: rgba(218, 218, 218, 0); border: 1px; border-color: beige; border-style: dashed; margin-left: 5%; width: 25%; column-width: 0vmin;" class = "gameDetails" id = "gameDetails">
 					<tr>
