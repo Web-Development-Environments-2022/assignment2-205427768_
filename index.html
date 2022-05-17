@@ -203,7 +203,10 @@
 
 			<!-- Game -->
 			<div class="divstoHide" id="gameAll">
-				<table style="background-color: rgba(187, 182, 182, 0.945); border: 1px; border-style: dashed; margin-left: 5%; width: 25%;" class = "gameDetails" id = "gameDetails">
+				<div id="game" style="position: fixed; margin-left: 33%;">
+					<canvas id="canvas" height="600" width="600"></canvas>
+				</div>
+				<table style="text-align: left; background-color: rgba(218, 218, 218, 0); border: 1px; border-color: beige; border-style: dashed; margin-left: 5%; width: 25%; column-width: 0vmin;" class = "gameDetails" id = "gameDetails">
 					<tr>
 						<div id="User"></div>
 							<td>
@@ -324,12 +327,12 @@
 							<input id="lblMonstersNum" type="text" class = "settingsGame" disabled/>
 						</td>
 					</tr>
-						
+					
 					
 				</table>
-				<div id="game">
-					<canvas id="canvas" height="600" width="600"></canvas>
-				</div>
+
+				
+				
 			</div>
 
 		<!-- Footer -->

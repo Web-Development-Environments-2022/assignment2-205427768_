@@ -68,7 +68,9 @@ var height_cell;
 
 var food_remain; 
 
-
+//music
+var playSoundBoll = false;
+var sound_play;
 
 
 window.onclick = function(event) {
@@ -130,13 +132,8 @@ $(document).ready(function() {
 		colorDiv.style.color = colorButton.value;
 	}
 	*/
-
-	
-
-
-
-
 });
+
 function updateBallsValue(){
 	var sliderBalls = document.getElementById("lblNumOfBalls");
 	var outputBalls = document.getElementById("ballsNum");
@@ -154,57 +151,22 @@ function updateMonsterValue(){
 	}
 }
 
-
 function updateTime(){
 	var textboxTime = document.getElementById("gameTime");
 	textboxTime.value = Math.floor(Math.random() * (600 - 60 + 1) + 60);
 }
-
 
 $(document).keydown(function(event) { 
 	if (event.keyCode == 27) { 
 		document.getElementById("myModal").style.display = "none";
 	}
 });
+
 function show(elementID){
 
 	var e = document.getElementById(elementID);
 	$('div.divstoHide').hide();
-	//var divsToHide = document.getElementsByClassName("divstoHide");
-	//for(var i = 0; i < divsToHide.length; i++){
-	//	divsToHide[i].style.visibility = "hidden";
-	//}
-	
-
-	//var topMenu = document.getElementById("topMenu");
-	//var header = document.getElementById("header");
-	//header.style.display = 'block'
-	//topMenu.style.display = 'block'
 	e.style.display = 'block';
-
-
-
-
-
-	//case1 : Welcome
-	//if(par=="welcome"){
-	//	document.getElementById("registerID").style.display ="none"
-	//	document.getElementById("loginID").style.display ="none"
-	//	document.getElementById("welcomeID").style.display ="block"
-	//}
-	//case2 : Register
-	//if(par=="register"){
-	//	document.getElementById("welcomeID").style.display ="none"
-	//	document.getElementById("loginID").style.display ="none"
-	//	document.getElementById("registerID").style.display ="block"
-	//}
-	//case2 : Login
-//	if(par=="login"){
-//		document.getElementById("welcomeID").style.display ="none"
-//		document.getElementById("registerID").style.display ="none"
-//		document.getElementById("loginID").style.display ="block"
-//	}
-
 } 
 
 function startNewGame(){
@@ -215,6 +177,7 @@ function startNewGame(){
 	ball5Amount = Math.round(0.6*totalNumberOfBalls);
 	ball15Amount = Math.round(0.3*totalNumberOfBalls);
 	ball25Amount = Math.round(0.1*totalNumberOfBalls);
+
 	//ballsColors
 	color5 = document.getElementById("colorpicker1").value;
 	color15 = document.getElementById("colorpicker2").value;
@@ -246,6 +209,9 @@ function startNewGame(){
 		show("gameAll");
 		Start();
 	});
+
+	playSoundBoll=true;
+	playSound();
 	
 }
 
@@ -342,31 +308,11 @@ function Start() {
 	currMonster = 1;
 	eaten50 = false;
 	createImages();
-	/*board[0] =  [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
-	board[1] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[2] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[3] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[4] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[5] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[6] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[7] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[8] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[9] =  [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[10] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[11] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[12] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[13] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[15] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[16] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[17] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[18] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[19] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[20] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]
-	board[21] = [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]*/
+	createSounds();
+
 	for (var i = 0; i < rows; i++) {
 		board[i] = new Array();
 
-		
 		for (var j = 0; j < cols; j++) {
 			//board[i][j]=4;
 			//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
@@ -514,6 +460,8 @@ function Start() {
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
+	playSound();
+
 }
 
 function createImages(){
@@ -523,8 +471,31 @@ function createImages(){
 
 	img_clock = new Image();
 	img_clock.src = "img/clock.png";
+
+	img_wall=new Image();
+	img_wall.src='img/wall.png';
 }
 
+function createSounds(){
+	sound_play = new Audio('sounds/game_remex.mp3');
+}
+
+
+function stopSound(){
+	sound_play.pause();
+	// playSoundBoll=false;
+	// $("#stopSound").hide();
+	// $("#playSound").show();
+
+
+}
+function playSound(){
+	sound_play.play();
+	// playSoundBoll=true;
+	// $("#playSound").hide();
+	// $("#stopSound").show();
+
+}
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * (rows-1) + 1);
@@ -653,11 +624,7 @@ function Draw(direction) {
 				context.textAlign = 'center';
 				context.fillText("25", center.x  ,center.y+5);
 			} else if (board[i][j] == 4) {
-				context.beginPath();
-				context.rect(center.x -width_cell/2, center.y - height_cell/2, width_cell, height_cell);
-			//	context.rect(center.x -30, center.y - 30, 60, 60);
-				context.fillStyle = "grey"; //color
-				context.fill();
+				context.drawImage(img_wall, center.x-width_cell/2, center.y-height_cell/2,width_cell,height_cell);
 			}
 			var currentTime1 = new Date();
 			time_elapsed_clock = (currentTime1 - ClockAppear)/1000 ;
@@ -673,7 +640,6 @@ function Draw(direction) {
 			}		
 		}
 	}
-	
 }
 
 function UpdatePosition() {
@@ -726,10 +692,16 @@ function UpdatePosition() {
 	time_elapsed = (currentTime - start_time) / 1000;
 	if(time_elapsed >= gameTime){
 		if(score< 100 ){
+			stopSound();
 			alert("You are better than "+score+" points!");
+			alert = function(){};
+			show('Settings');		
 		}
 		else{
+			stopSound();
 			alert("Winner!!!");
+			alert = function(){};
+			show('Settings');
 		}
 	}
 	/*if (score >= 20 && time_elapsed <= 10) {

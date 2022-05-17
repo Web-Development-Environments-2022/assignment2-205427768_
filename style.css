@@ -9,6 +9,7 @@ body{
     font-family: "Oswald",sans-serif;
     height: 100%;
     min-height: 100%;
+    margin: 0;
 }
 /*---------------------------------------------Welcome-------------------------------------------------------*/
 /*---------------------------------------------Register-------------------------------------------------------*/
@@ -148,13 +149,13 @@ div.headerRight{
     color: #002bff;
     font-size: x-small;
 } */
-
 .footer{
 
     margin-bottom: 0vmax; 
     position: absolute;
     clear: both;
-    width: 100%;
+    width: 99.3%;
+    margin-left: 0.035%;
     background-color: #661800;
     color: white;
     height: 35px;
@@ -162,6 +163,7 @@ div.headerRight{
     text-align: center;
     font-weight: 300;
     border-style: outset;
+    bottom: 0;
 
 }
 .column1{
