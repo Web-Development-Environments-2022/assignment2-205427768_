@@ -205,7 +205,9 @@
 			<div class="divstoHide" id="gameAll">
 				<div id="game" style="position: fixed; margin-left: 33%;">
 					<canvas id="canvas" height="600" width="600"></canvas>
-				</div>
+					<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a>Pause</a></button>
+					<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a>Play Game</a></button>
+				</div> 
 				<table style="text-align: left; background-color: rgba(218, 218, 218, 0); border: 1px; border-color: beige; border-style: dashed; margin-left: 5%; width: 25%; column-width: 0vmin;" class = "gameDetails" id = "gameDetails">
 					<tr>
 						<div id="User"></div>

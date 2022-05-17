@@ -51,6 +51,7 @@ var imgGhost1;
 var imgGhost2;
 var imgGhost3;
 var imgGhost4;
+var intervalGhosts ;
 
 
 
@@ -66,6 +67,7 @@ var height_canvas;
 var width_cell;
 var height_cell;
 
+var livesNum;
 var food_remain; 
 
 //music
@@ -176,6 +178,7 @@ function show(elementID){
 	window.clearInterval(interval);
 	window.clearInterval(interval50);
 	window.clearInterval(intervalClock);
+	window.clearInterval(intervalGhosts);
 } 
 
 function startNewGame(){
@@ -315,6 +318,7 @@ function Start() {
 	
 	board = new Array();
 	score = 0;
+	livesNum = 5;
 	pac_color = "yellow";
 	var cnt = rows*cols;
 	direction = 4;
@@ -483,6 +487,7 @@ function Start() {
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
+	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
 	playSound();
 
 }
@@ -718,14 +723,17 @@ function UpdatePosition() {
 		score+=50;
 		points50.i = null;
 		points50.j = null;
-
-		
-		
 	}
 	if (board[shape.i][shape.j] == 6) {
 		board[shape.i][shape.j] == 0;
 		gameTime=Number(gameTime)+Number(20);
 		document.getElementById("lblTime").value =timeGame;
+	}
+	for(var k = 1; k < ghostArray.length; k++){
+		if(shape.i == ghostArray[k].i && shape.j==ghostArray[k].j){
+			UpdateLifes();
+			board[shape.i][shape.j] == 0;
+		}
 	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
@@ -763,8 +771,48 @@ function UpdatePosition() {
 	}
 }
 
+function UpdateLifes(){
+	$("#life"+livesNum).hide();
+	livesNum--;
+	score = score-10;
+	
+	if(livesNum==0)
+	{   
+		alert("Looser!");
+		show('gameOver');
+	}
+	else{
+		currGhost = 1;
+		while(currGhost <= ghostNum) 
+		{
+			if (currGhost == 1){
+				ghostArray[currGhost].i = 1;
+				ghostArray[currGhost].j = 1;
+			}
+			else if(currGhost == 2){
+				ghostArray[currGhost].i = 1;
+				ghostArray[currGhost].j = 20;
+			}
+			else if(currGhost == 3){
+				ghostArray[currGhost].i = 20;
+				ghostArray[currGhost].j = 1;
+			}
+			else{
+				ghostArray[currGhost].i = 20;
+				ghostArray[currGhost].j = 20;
+			}
+			currGhost++;
+			//board[i][j] = 2;
+		} 
+		var pacman=findRandomEmptyCell(board);
+		shape.i = pacman[0];
+		shape.j = pacman[1];
+		board[pacman[0]][pacman[1]] = 2;
+	}
+}
+
 function DrawGhosts(){
-	for (var k = 1; k <= ghostNum; k++) { imgGhost1
+	for (var k = 1; k <= ghostNum; k++) { 
 		context.drawImage(eval("imgGhost"+k), ghostArray[k].i*width_cell, ghostArray[k].j*height_cell,width_cell,height_cell);
 	}
 }
@@ -806,4 +854,160 @@ function updatePositionClock()
 	var emptyCell = findRandomEmptyCell(board);
 	board[emptyCell[0]][emptyCell[1]]=6;
 }
+function UpdatePositionGhosts(){
+	for(var k = 1; k <= ghostNum ;k++){
+		var opposite=shape.j-ghostArray[k].j;
+		var adjacent=shape.i-ghostArray[k].i;
+		
+		var angle= Math.atan2(opposite,adjacent);
+		
+	
 
+		var vx = Math.round( Math.cos(angle));
+		var vy= Math.round( Math.sin(angle));
+		if(vx==0 && vy==-1){
+			if(board[ghostArray[k].i][ghostArray[k].j-1] !=4){	
+				ghostArray[k].j=ghostArray[k].j-1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+		}
+		else if(vx==0 && vy==1)
+		{	
+			if(board[ghostArray[k].i][ghostArray[k].j+1] !=4){
+				ghostArray[k].j=ghostArray[k].j+1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+				
+		}
+		else if(vx==-1 && vy==0){
+			if(board[ghostArray[k].i-1][ghostArray[k].j] !=4){
+				ghostArray[k].i=ghostArray[k].i-1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+			
+		}	
+		else if(vx==1 && vy==0){
+			if(board[ghostArray[k].i+1][ghostArray[k].j] !=4){	
+				ghostArray[k].i=ghostArray[k].i+1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+		} 
+		else if(vx==-1 && vy==-1){
+			if(board[ghostArray[k].i-1][ghostArray[k].j] !=4){
+				ghostArray[k].i=ghostArray[k].i-1;
+			}
+		
+			else if(board[ghostArray[k].i][ghostArray[k].j-1] !=4){
+				ghostArray[k].j=ghostArray[k].j-1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+		}
+		else if(vx==-1 && vy==1)
+		{	
+			if(board[ghostArray[k].i-1][ghostArray[k].j] !=4){	
+				ghostArray[k].i = ghostArray[k].i-1;
+			}
+			else if(board[ghostArray[k].i][ghostArray[k].j+1] != 4){
+				ghostArray[k].j = ghostArray[k].j+1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+
+		}
+		else if(vx==1 && vy==-1)
+		{	
+			if(board[ghostArray[k].i+1][ghostArray[k].j] !=4){	
+				ghostArray[k].i=ghostArray[k].i+1;
+			}
+			else if(board[ghostArray[k].i][ghostArray[k].j-1] != 4){
+				ghostArray[k].j=ghostArray[k].j-1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+				
+		}
+		else if(vx==1 && vy==1)
+		{	
+			if(board[ghostArray[k].i+1][ghostArray[k].j] !=4){
+				ghostArray[k].i = ghostArray[k].i+1;
+			}
+			else if(board[ghostArray[k].i][ghostArray[k].j+1] != 4){
+				ghostArray[k].j = ghostArray[k].j+1;
+			}
+			else{
+				findRandomGhostCell(ghostArray[k]);
+			}
+		}
+		else
+		{
+			findRandomGhostCell(ghostArray[k]);
+		}	
+	}
+}
+
+
+
+function findRandomGhostCell(ghost){
+	var movedGhost  = false;
+	while(!movedGhost){
+		var x = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+		if (x == 1) {
+			if (ghost.j > 0 && board[ghost.i][ghost.j - 1] != 4){ //&& board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				ghost.j--;
+				movedGhost  = true;
+			}
+		}
+		else if (x == 2) {
+			if (ghost.j < rows-1 && board[ghost.i][ghost.j + 1] != 4){// && board[points50.i][spoints50hape.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				ghost.j++;
+				movedGhost  = true;
+			}
+		}
+		else if (x == 3) {
+			if (ghost.i > 0 && board[ghost.i - 1][ghost.j] != 4){//&& board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				ghost.i--;
+				movedGhost  = true;
+			}
+		}
+		else if (x == 4) {
+			if (ghost.i < cols-1 && board[ghost.i + 1][ghost.j] != 4){// && board[points50.i][points50.j - 1] != 5 && board[points50.i][points50.j - 1] != 15 && board[points50.i][points50.j - 1] != 25) {
+				ghost.i++;
+				movedGhost  = true;
+			}
+		}
+	}
+
+}
+function resumeGame(){
+	$("#pauseGame").hide();
+	$("#playGame").show();
+	window.clearInterval(interval);
+	window.clearInterval(interval50);
+	window.clearInterval(intervalClock);
+	window.clearInterval(intervalGhosts);
+	document.getElementById("canvas").disabled = True;
+	
+}
+function playGame(){
+	$("#playGame").hide();
+	$("#pauseGame").show();
+	interval = setInterval(UpdatePosition, 170);
+	interval50 = setInterval(UpdatePosition50, 700);
+	intervalClock = setInterval(updatePositionClock, 30000);
+	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
+	document.getElementById("canvas").disabled = False;
+	
+}
+	
