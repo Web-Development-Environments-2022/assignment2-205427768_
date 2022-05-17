@@ -25,7 +25,7 @@
 			<il><a onclick="show('register')"> Register</a></il>
 			<il><a onclick="show('login')"> Login</a></il>
 			<!-- <il><a onclick="show('settings')"> settings</a></il> -->
-			<il><a onclick="show('gameAll')"> Game</a></il>
+			<!--<il><a onclick="show('gameAll')"> Game</a></il>-->
 			<il style = "display:inline;"><a id="myBtn" type="button">About</a></li>
 		</div>
 		<!-- About -->
@@ -96,7 +96,7 @@
 
 			<!-- Settings -->
 			<div class="divstoHide"  id="Settings" hidden>
-				<form class="settingsForm">
+				<form class="settingsForm" id="settingsForm">
 					<h1 style="font-size: 40px; font-family: Calibri;">Settings</h1>
 					<br>
 					Please enter the game keyboard
@@ -327,14 +327,18 @@
 							<input id="lblMonstersNum" type="text" class = "settingsGame" disabled/>
 						</td>
 					</tr>
+
 					
 					
 				</table>
 
-				
-				
 			</div>
-
+		<!-- Game-Over -->
+		<div class="divstoHide" id="gameOver">
+			<img  src="img/Game-Over.png" style="width: 512px; height: 512px;" />
+			<br> 
+			<button class="glow-on-hover" onclick="show('Settings')"><a>New Game</a></button>
+		</div>
 		<!-- Footer -->
 		<div class = "footer" id="footer">
 			<p>
