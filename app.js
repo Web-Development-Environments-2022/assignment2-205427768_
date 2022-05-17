@@ -43,10 +43,10 @@ var gameTime;
 var ghostNum = 2;
 var currGhost = 1;
 var ghostArray;
-var shapeGhost1=new Object();
-var shapeGhostr2=new Object();
-var shapeGhost3=new Object();
-var shapeGhost4=new Object();
+//var shapeGhost1=new Object();
+//var shapeGhostr2=new Object();
+//var shapeGhost3=new Object();
+//var shapeGhost4=new Object();
 var imgGhost1;
 var imgGhost2;
 var imgGhost3;
@@ -66,14 +66,22 @@ var width_canvas;
 var height_canvas;
 var width_cell;
 var height_cell;
-
+//lives
 var livesNum;
+var shapeLife = new Object();
+var intervalLives;
+var lifeAppear;
+var time_elapsed_life;
+var img_life;
+
 var food_remain; 
 
 //music
 var playSoundBoll = false;
 var sound_play;
+var music;
 
+var currTimePause;
 
 window.onclick = function(event) {
 	if (event.target == modal) {
@@ -160,6 +168,7 @@ function show(elementID){
 	window.clearInterval(interval50);
 	window.clearInterval(intervalClock);
 	window.clearInterval(intervalGhosts);
+	window.clearInterval(intervalLives);
 } 
 
 function startNewGame(){
@@ -189,7 +198,18 @@ function startNewGame(){
 		height_canvas=canvas.height;
 		width_cell=width_canvas/rows;
 		height_cell=height_canvas/cols;
-
+		if (document.getElementById("keyUp").value == ""){
+			document.getElementById("keyUp").value = "ArrowUp";
+		}
+		if (document.getElementById("keyLeft").value == ""){
+			document.getElementById("keyLeft").value = "ArrowLeft";
+		}
+		if (document.getElementById("keyRight").value == ""){
+			document.getElementById("keyRight").value = "ArrowRight";
+		}
+		if (document.getElementById("keyDown").value == ""){
+			document.getElementById("keyDown").value = "ArrowDown";
+		}
 		document.getElementById("lblUser").value = document.getElementsByName("usernameLogin")[0].value;
 		document.getElementById("lblKeyUp").value =document.getElementById("keyUp").value;
 		document.getElementById("lblKeyLeft").value =document.getElementById("keyLeft").value;
@@ -204,6 +224,10 @@ function startNewGame(){
 		var form = document.getElementById("settingsForm");
 		document.getElementById("lblNumOfMonsters").value= 2;
 		document.getElementById("lblNumOfBalls").value =70;
+		document.getElementById("keyUp").value = "";
+		document.getElementById("keyLeft").value = "";
+		document.getElementById("keyRight").value = "";
+		document.getElementById("keyDown").value = "";
 		form.reset();
 		Start();
 	});
@@ -469,6 +493,7 @@ function Start() {
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
 	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
+	intervalLives = setInterval(UpdatePositionLife, 25000);
 	playSound();
 
 }
@@ -495,6 +520,9 @@ function createImages(){
 
 	imgGhost4 = new Image();
 	imgGhost4.src = "img/ghost4.png";
+	
+	img_life = new Image();
+	img_life.src = "img/lifeOne.png";
 }
 
 function createSounds(){
@@ -654,9 +682,18 @@ function Draw(direction) {
 				}
 				 	
 				else{
-					board[i][j]=0
+					board[i][j] = 0;
 				}	
-			}		
+			}	
+			time_elapsed_life = (currentTime1 - lifeAppear)/1000;
+			if(board[i][j] == 7){
+				if(time_elapsed_life < 8){
+					context.drawImage(img_life,center.x-width_cell/2, center.y-height_cell/2,width_cell,height_cell);
+				}
+				else{
+					board[i][j] = 0;
+				}	
+			}
 		}
 	}
 }
@@ -706,7 +743,12 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 6) {
 		board[shape.i][shape.j] == 0;
 		gameTime=Number(gameTime)+Number(20);
-		document.getElementById("lblTime").value =timeGame;
+		document.getElementById("lblTime").value = timeGame;
+	}
+	if (board[shape.i][shape.j] == 7) {
+		board[shape.i][shape.j] == 0;
+		livesNum++;
+		$("#life"+livesNum).show();
 	}
 	for(var k = 1; k < ghostArray.length; k++){
 		if(shape.i == ghostArray[k].i && shape.j==ghostArray[k].j){
@@ -831,7 +873,15 @@ function updatePositionClock()
 {
 	ClockAppear=new Date();
 	var emptyCell = findRandomEmptyCell(board);
-	board[emptyCell[0]][emptyCell[1]]=6;
+	board[emptyCell[0]][emptyCell[1]] = 6;
+}
+function UpdatePositionLife(){
+	lifeAppear=new Date();
+	var emptyCell = findRandomEmptyCell(board);
+	if (livesNum < 7){
+		board[emptyCell[0]][emptyCell[1]] = 7;
+	}
+	
 }
 function UpdatePositionGhosts(){
 	for(var k = 1; k <= ghostNum ;k++){
@@ -972,24 +1022,42 @@ function findRandomGhostCell(ghost){
 function resumeGame(){
 	$("#pauseGame").hide();
 	$("#playGame").show();
-	stopSound();
-	$("#playSound").show();
+	if (playSoundBoll==true){
+		music = true;
+		stopSound();
+		$("#playSound").show();
+	}
+	else{
+		music = false;
+	}
+	
+	currTimePause = new Date();
 	window.clearInterval(interval);
 	window.clearInterval(interval50);
 	window.clearInterval(intervalClock);
 	window.clearInterval(intervalGhosts);
-	document.getElementById("canvas").disabled = True;
+	window.clearInterval(intervalLives);
+	document.getElementById("canvas").disabled = true;
 	
 }
 function playGame(){
 	$("#playGame").hide();
 	$("#pauseGame").show();
-	playSound();
-	$("#stopSound").show();
+	if (music== true){
+		playSound();
+		$("#stopSound").show();
+	}
+	
+	var now = new Date();
+	var elapsed = (now-currTimePause) / 1000;
+	//gameTime = gameTime + elapsed;
+	start_time.setSeconds(start_time.getSeconds() + elapsed) ;
+
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
 	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
-	document.getElementById("canvas").disabled = False;
+	intervalLives = setInterval(UpdatePositionLife, 30000);
+	document.getElementById("canvas").disabled = false;
 }
 	
