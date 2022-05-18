@@ -68,12 +68,19 @@ var width_cell;
 var height_cell;
 //lives
 var livesNum;
-var shapeLife = new Object();
+//var shapeLife = new Object();
 var intervalLives;
 var lifeAppear;
 var time_elapsed_life;
 var img_life;
 
+//slowMotion
+var intervalSlowMotion;
+var slowMotionAppear;
+var time_elapsed_slow_motion;
+var img_slowMotion;
+var start_slow_motion;
+var isSlowMotion;
 var food_remain; 
 
 //music
@@ -169,6 +176,7 @@ function show(elementID){
 	window.clearInterval(intervalClock);
 	window.clearInterval(intervalGhosts);
 	window.clearInterval(intervalLives);
+	window.clearInterval(intervalSlowMotion);
 } 
 
 function startNewGame(){
@@ -336,6 +344,7 @@ function Start() {
 	start_time = new Date();
 	currGhost = 1;
 	eaten50 = false;
+	isSlowMotion = false;
 	createImages();
 	createSounds();
 
@@ -492,8 +501,9 @@ function Start() {
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
-	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
+	intervalGhosts = setInterval(UpdatePositionGhosts, 500);
 	intervalLives = setInterval(UpdatePositionLife, 25000);
+	intervalSlowMotion = setInterval(UpdatePositionSlowMotion ,20000);
 	playSound();
 
 }
@@ -523,6 +533,9 @@ function createImages(){
 	
 	img_life = new Image();
 	img_life.src = "img/lifeOne.png";
+
+	img_slowMotion = new Image();
+	img_slowMotion.src = "img/slowMotion.png";
 }
 
 function createSounds(){
@@ -694,6 +707,15 @@ function Draw(direction) {
 					board[i][j] = 0;
 				}	
 			}
+			time_elapsed_slow_motion = (currentTime1 - slowMotionAppear)/1000;
+			if(board[i][j] == 8){
+				if(time_elapsed_slow_motion < 9){
+					context.drawImage(img_slowMotion,center.x-width_cell/2, center.y-height_cell/2,width_cell,height_cell);
+				}
+				else{
+					board[i][j] = 0;
+				}
+			}
 		}
 	}
 }
@@ -750,6 +772,20 @@ function UpdatePosition() {
 		livesNum++;
 		$("#life"+livesNum).show();
 	}
+	if (board[shape.i][shape.j] == 8) {
+		start_slow_motion = new Date();
+		board[shape.i][shape.j] == 0;
+		window.clearInterval(intervalGhosts);
+		intervalGhosts = setInterval(UpdatePositionGhosts, 1500);
+		isSlowMotion = true;
+	}
+	var currTime = new Date();
+	if((currTime - start_slow_motion)/1000 > 11 && isSlowMotion){
+		window.clearInterval(intervalGhosts);
+		intervalGhosts = setInterval(UpdatePositionGhosts, 600);
+		isSlowMotion = false;
+	}
+		
 	for(var k = 1; k < ghostArray.length; k++){
 		if(shape.i == ghostArray[k].i && shape.j==ghostArray[k].j){
 			UpdateLifes();
@@ -882,6 +918,12 @@ function UpdatePositionLife(){
 		board[emptyCell[0]][emptyCell[1]] = 7;
 	}
 	
+}
+function UpdatePositionSlowMotion(){
+	slowMotionAppear = new Date();
+	var emptyCell = findRandomEmptyCell(board);
+	board[emptyCell[0]][emptyCell[1]] = 8;
+
 }
 function UpdatePositionGhosts(){
 	for(var k = 1; k <= ghostNum ;k++){
@@ -1037,6 +1079,7 @@ function resumeGame(){
 	window.clearInterval(intervalClock);
 	window.clearInterval(intervalGhosts);
 	window.clearInterval(intervalLives);
+	window.clearInterval(intervalSlowMotion);
 	document.getElementById("canvas").disabled = true;
 	
 }
@@ -1056,8 +1099,9 @@ function playGame(){
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
-	intervalGhosts = setInterval(UpdatePositionGhosts, 600);
-	intervalLives = setInterval(UpdatePositionLife, 30000);
+	intervalGhosts = setInterval(UpdatePositionGhosts, 500);
+	intervalLives = setInterval(UpdatePositionLife, 25000);
+	intervalSlowMotion = setInterval(UpdatePositionSlowMotion,20000);
 	document.getElementById("canvas").disabled = false;
 }
 	
