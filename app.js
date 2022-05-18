@@ -22,6 +22,7 @@ var imgDown;
 var imgUp;
 
 //Balls
+var currBallsNum;
 var totalNumberOfBalls;
 var ball5Amount;
 var ball15Amount;
@@ -340,6 +341,7 @@ function Start() {
 	food_remain_5 = ball5Amount;
 	food_remain_15 = ball15Amount;
 	food_remain_25 = ball25Amount;
+	currBallsNum = food_remain_5 + food_remain_15 + food_remain_25;
 	var pacman_remain = 1;
 	start_time = new Date();
 	currGhost = 1;
@@ -747,15 +749,22 @@ function UpdatePosition() {
 		}
 	}
 	if (board[shape.i][shape.j] == 5) {
+		board[shape.i][shape.j] = 2;
 		score+=5;
+		currBallsNum--;
 	}
 	if (board[shape.i][shape.j] == 15) {
+		board[shape.i][shape.j] = 2;
 		score+=15;
+		currBallsNum--;
 	}
 	if (board[shape.i][shape.j] == 25) {
+		board[shape.i][shape.j] = 2;
 		score+=25;
+		currBallsNum--;
 	}
 	if (shape.i == points50.i && shape.j == points50.j){
+		board[shape.i][shape.j] = 2;
 		eaten50 = true;
 		window.clearInterval(interval50);
 		score+=50;
@@ -763,18 +772,18 @@ function UpdatePosition() {
 		points50.j = null;
 	}
 	if (board[shape.i][shape.j] == 6) {
-		board[shape.i][shape.j] == 0;
+		board[shape.i][shape.j] == 2;
 		gameTime=Number(gameTime)+Number(20);
 		document.getElementById("lblTime").value = timeGame;
 	}
 	if (board[shape.i][shape.j] == 7) {
-		board[shape.i][shape.j] == 0;
+		board[shape.i][shape.j] == 2;
 		livesNum++;
 		$("#life"+livesNum).show();
 	}
 	if (board[shape.i][shape.j] == 8) {
 		start_slow_motion = new Date();
-		board[shape.i][shape.j] == 0;
+		board[shape.i][shape.j] == 2;
 		window.clearInterval(intervalGhosts);
 		intervalGhosts = setInterval(UpdatePositionGhosts, 1500);
 		isSlowMotion = true;
@@ -795,19 +804,19 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if(time_elapsed >= gameTime){
+	if(time_elapsed >= gameTime || currBallsNum==0){
 		if(score< 100 ){
-			stopSound();
 			alert("You are better than "+score+" points!");
 			alert = function(){};
 			show('Settings');		
 		}
 		else{
-			stopSound();
+			
 			alert("Winner!!!");
 			alert = function(){};
 			show('Settings');
 		}
+		stopSound();
 		show('gameOver');
 	}
 	/*if (score >= 20 && time_elapsed <= 10) {
