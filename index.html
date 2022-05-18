@@ -13,6 +13,7 @@
 	</head>
 
 	<body>
+		<div id="main-wrapper">
 		<div class="header" id="header">
 			<!--<img src="img/Logo.png" id="Logo"/> -->
 			<img src="img/pac-man-logo1.png" id="pac-man-logo1"/>
@@ -104,7 +105,6 @@
 			<div class="divstoHide"  id="Settings" hidden>
 				<form class="settingsForm" id="settingsForm">
 					<h1 style="font-size: 40px; font-family: Calibri;">Settings</h1>
-					<br>
 					Please enter the game keyboard
 					<table>
 						<tr>
@@ -171,9 +171,9 @@
 							<td class="column2"><input id="lblNumOfMonsters" type="range" min="1" max="4" value="2" class="slider"></td>
 							<td class="column3">Value: <span id="monstersNum"></span></td>
 						</tr>	
-					</table>
+					
 					<!--<label> Please enter the game keyboard:</label>-->
-					<table>
+					
 					
 					<!--	<tr>
 							<td></td>
@@ -197,13 +197,19 @@
 							</td>					
 						</tr>   -->
 
+						
+							<!--<td colspan="1" class="keyColumn"></td>-->
 						<tr>
-							<td colspan="1"></td>
-							<td colspan="2" class="keyColumn">><button type="button" id="startGame" onclick="startNewGame()">Start<br> Game </button></td>
-							<td colspan="3" class="keyColumn"><button type="button" id="randomGame"/*class="glow-on-hover"*/ onclick="generateRandomValues()">Random</button> </td>
-							<td colspan="4"></td>
+							<td colspan ="3">
+								<button type="button" id="startGame" onclick="startNewGame()">Start<br> Game </button>
+								<button type="button" id="randomGame" onclick="generateRandomValues()">Random</button> 
+							</td>
+								
 						</tr>
+						
+					
 					</table>
+					
 				</form>
 			</div>
 
@@ -212,9 +218,10 @@
 				<div id="game" style="position: absolute; margin-left: 33%;">
 					<canvas id="canvas" height="600" width="600"></canvas>
 					<!--<button class="buttoni" style="width: 270px; height: 46.9px;">Earn Money Helping <b>People</b><img src="img/pla.png" style="position: relative; float: right; width: 25px;"></button> -->
-					<!--<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a style="font-size:230%;">Pause Game</a></button>-->
-					<img src="img/pause.jpg" style="width:50px; height:50px;" id="pauseGame" class="glow-on-hover" onclick="resumeGame()"/>
-					<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a style="font-size:230%;">Play Game</a></button>
+					<!--<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a style="font-size:230%;">Pause Game</a></button>
+						<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a style="font-size:230%;">Play Game</a></button>-->
+					<img src="img/pause.png" style="width:50px; height:50px;" id="pauseGame" class="glow-on-hover" onclick="resumeGame()"/>
+					<img src="img/play.png"  style="width:50px; height:50px;" id="playGame" class="glow-on-hover" onclick="playGame()" hidden/>
 					
 					<button id="stopSound" class="glow-on-hover"  onclick="stopSound()"><a style="font-size:230%;">Stop Music</a></button>
 					<button id="playSound" class="glow-on-hover" onclick="playSound()" hidden><a style="font-size:230%;">Play Music</a></button>
@@ -362,6 +369,6 @@
 			
 
 		</div>
-		
+		</div>
 	</body>
 </html>

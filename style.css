@@ -8,8 +8,9 @@ body{
     background:#000;
     font-family: "Oswald",sans-serif;
     height: 100%;
-    min-height: 100%;
+    /*min-height: 100%;*/
     margin: 0;
+    padding: 0;
 }
 /*---------------------------------------------Welcome-------------------------------------------------------*/
 /*---------------------------------------------Register-------------------------------------------------------*/
@@ -126,7 +127,8 @@ div.headerRight{
 .content{
    /* position: relative;*/
     /*display: flex;*/
-    min-height: 100%;
+    /*min-height: 100%;*/
+    flex:1;
 }
 
 
@@ -151,11 +153,11 @@ div.headerRight{
 } */
 .footer{
 
-    margin-bottom: 0vmax; 
+   /* margin-bottom: 0vmax; 
     position: absolute;
     clear: both;
     width: 99.3%;
-    margin-left: 0.035%;
+    margin-left: 0.035%;*/
     background-color: #661800;
     color: white;
     height: 35px;
@@ -252,8 +254,9 @@ p {
     letter-spacing: 2px;
     border: white solid;
     cursor: pointer;
-    margin-left: -40%;
+    /*margin-left: -40%;*/
     border-radius: 25px;
+    
 }
 
 .glow-on-hover {
@@ -368,7 +371,12 @@ p {
   
   /* Modal Footer */
   .modal-footer {
-    padding: 2px 16px;
+    padding: 2px 2px;
+    margin: 0 auto;
+    /*width: 100%;*/
+    overflow:hidden;
+    position: absolute;
+    bottom: 0px;
     background-color: #801111;
     color: white;
   }
@@ -401,8 +409,8 @@ p {
     margin: 0 auto;
     margin-top: 5%;
     background-color: rgba(186, 189, 179, 0.877);
-    width: 560px;
-    height: 650px;
+    width: 580px;
+    height: 700px;
 }
 
 .registerForm
@@ -520,3 +528,9 @@ form .error {
     padding: 10px;
     display: flex;
 }
+
+#main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }

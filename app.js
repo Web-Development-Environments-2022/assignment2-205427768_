@@ -171,7 +171,9 @@ function show(elementID){
 		updateBallsValue();
 		updateGhostValue();
 	}
-	
+	if (music== true){
+		stopSound();
+	}
 	window.clearInterval(interval);
 	window.clearInterval(interval50);
 	window.clearInterval(intervalClock);
@@ -507,7 +509,7 @@ function Start() {
 	intervalLives = setInterval(UpdatePositionLife, 25000);
 	intervalSlowMotion = setInterval(UpdatePositionSlowMotion ,20000);
 	playSound();
-
+	music = true;
 }
 
 function createImages(){
