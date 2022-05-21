@@ -53,7 +53,7 @@ var imgGhost2;
 var imgGhost3;
 var imgGhost4;
 var intervalGhosts ;
-
+var ghostFlag;
 
 
 
@@ -231,6 +231,12 @@ function startNewGame(){
 		document.getElementById("lblColor2").value =document.getElementById("colorpicker2").value;
 		document.getElementById("lblColor3").value =document.getElementById("colorpicker3").value;
 		document.getElementById("lblMonstersNum").value =document.getElementById("lblNumOfMonsters").value;
+		for(var i=1;i<6;i++){
+			$("#life"+i).show();
+		}
+		
+		$("#life6").hide();
+		$("#life7").hide();
 		show("gameAll");
 		var form = document.getElementById("settingsForm");
 		document.getElementById("lblNumOfMonsters").value= 2;
@@ -550,12 +556,14 @@ function createSounds(){
 function stopSound(){
 	sound_play.pause();
 	playSoundBoll=false;
+	//music = false;
 	$("#stopSound").hide();
 	$("#playSound").show();
 }
 function playSound(){
 	sound_play.play();
 	playSoundBoll=true;
+	//music = true;
 	$("#playSound").hide();
 	$("#stopSound").show();
 
@@ -725,6 +733,7 @@ function Draw(direction) {
 }
 
 function UpdatePosition() {
+	ghostFlag= false;
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
 	if (typeof x != "undefined")
@@ -774,18 +783,18 @@ function UpdatePosition() {
 		points50.j = null;
 	}
 	if (board[shape.i][shape.j] == 6) {
-		board[shape.i][shape.j] == 2;
+		board[shape.i][shape.j] = 2;
 		gameTime=Number(gameTime)+Number(20);
 		document.getElementById("lblTime").value = timeGame;
 	}
 	if (board[shape.i][shape.j] == 7) {
-		board[shape.i][shape.j] == 2;
+		board[shape.i][shape.j] = 2;
 		livesNum++;
 		$("#life"+livesNum).show();
 	}
 	if (board[shape.i][shape.j] == 8) {
 		start_slow_motion = new Date();
-		board[shape.i][shape.j] == 2;
+		board[shape.i][shape.j] = 2;
 		window.clearInterval(intervalGhosts);
 		intervalGhosts = setInterval(UpdatePositionGhosts, 1500);
 		isSlowMotion = true;
@@ -793,30 +802,36 @@ function UpdatePosition() {
 	var currTime = new Date();
 	if((currTime - start_slow_motion)/1000 > 11 && isSlowMotion){
 		window.clearInterval(intervalGhosts);
-		intervalGhosts = setInterval(UpdatePositionGhosts, 600);
+		intervalGhosts = setInterval(UpdatePositionGhosts, 500);
 		isSlowMotion = false;
 	}
-		
+	
 	for(var k = 1; k < ghostArray.length; k++){
 		if(shape.i == ghostArray[k].i && shape.j==ghostArray[k].j){
-			UpdateLifes();
 			board[shape.i][shape.j] == 0;
+			ghostFlag = true;
+			UpdateLifes();
+			
 		}
 	}
-	board[shape.i][shape.j] = 2;
+	if(ghostFlag==false){
+		board[shape.i][shape.j] = 2;
+	}
+	
+	/*board[shape.i][shape.j] = 2;*/
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	if(time_elapsed >= gameTime || currBallsNum==0){
 		if(score< 100 ){
 			alert("You are better than "+score+" points!");
-			alert = function(){};
-			show('Settings');		
+			/*alert = function(){};*/
+			/*show('Settings');		*/
 		}
 		else{
 			
 			alert("Winner!!!");
-			alert = function(){};
-			show('Settings');
+			/*alert = function(){};*/
+			/*show('Settings');*/
 		}
 		stopSound();
 		show('gameOver');
@@ -1076,12 +1091,14 @@ function resumeGame(){
 	$("#pauseGame").hide();
 	$("#playGame").show();
 	if (playSoundBoll==true){
+	//if (music==true){
 		music = true;
 		stopSound();
 		$("#playSound").show();
 	}
 	else{
 		music = false;
+
 	}
 	
 	currTimePause = new Date();

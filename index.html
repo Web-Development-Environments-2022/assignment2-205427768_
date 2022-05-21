@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-		<div id="main-wrapper">
+		
 		<div class="header" id="header">
 			<!--<img src="img/Logo.png" id="Logo"/> -->
 			<img src="img/pac-man-logo1.png" id="pac-man-logo1"/>
@@ -201,7 +201,7 @@
 							<!--<td colspan="1" class="keyColumn"></td>-->
 						<tr>
 							<td colspan ="3">
-								<button type="button" id="startGame" onclick="startNewGame()">Start<br> Game </button>
+								<button type="button" id="startGame" onclick="startNewGame()">Start Game </button>
 								<button type="button" id="randomGame" onclick="generateRandomValues()">Random</button> 
 							</td>
 								
@@ -215,21 +215,12 @@
 
 			<!-- Game -->
 			<div class="divstoHide" id="gameAll">
-				<div id="game" style="position: absolute; margin-left: 33%;">
-					<canvas id="canvas" height="600" width="600"></canvas>
-					<!--<button class="buttoni" style="width: 270px; height: 46.9px;">Earn Money Helping <b>People</b><img src="img/pla.png" style="position: relative; float: right; width: 25px;"></button> -->
-					<!--<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a style="font-size:230%;">Pause Game</a></button>
-						<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a style="font-size:230%;">Play Game</a></button>-->
-					<img src="img/pause.png" style="width:50px; height:50px;" id="pauseGame" class="glow-on-hover" onclick="resumeGame()"/>
-					<img src="img/play.png"  style="width:50px; height:50px;" id="playGame" class="glow-on-hover" onclick="playGame()" hidden/>
-					
-					<button id="stopSound" class="glow-on-hover"  onclick="stopSound()"><a style="font-size:230%;">Stop Music</a></button>
-					<button id="playSound" class="glow-on-hover" onclick="playSound()" hidden><a style="font-size:230%;">Play Music</a></button>
-					<!-- <td rowspan="10"><input hidden id="playSound" type="image" /*onclick="playSound()"*/ src="img/soundOff.png" width="48" height="48"></td> -->
-				</div> 
-				<table style="text-align: left; background-color: rgba(218, 218, 218, 0); border: 1px; border-color: beige; border-style: dashed; margin-left: 5%; width: 25%; column-width: 0vmin;" class = "gameDetails" id = "gameDetails">
+			 <div class = "firstChild">
+
+			 
+				<table style="text-align: left; background-color: rgba(218, 218, 218, 0); border: 1px; border-color: beige; border-style: dashed; margin-left: 5%; width: 85%;height: 600px; column-width: 0vmin;" class = "gameDetails" id = "gameDetails">
 					<tr>
-						<div id="User"></div>
+						<div id="User">
 							<td>
 								<label for="lblUser">USER:</label>
 							</td>
@@ -352,6 +343,46 @@
 					
 					
 				</table>
+			</div>
+				<div id="game" ><!--style="position: absolute; margin-left: 33%;">-->
+					<canvas id="canvas" height="600" width="600"></canvas>
+					<!--<button class="buttoni" style="width: 270px; height: 46.9px;">Earn Money Helping <b>People</b><img src="img/pla.png" style="position: relative; float: right; width: 25px;"></button> -->
+					<!--<button id="pauseGame" class="glow-on-hover" onclick="resumeGame()"><a style="font-size:230%;">Pause Game</a></button>
+						<button id="playGame" class="glow-on-hover" onclick="playGame()" hidden><a style="font-size:230%;">Play Game</a></button>-->
+						<div id="game2">
+					
+					
+					
+					
+						
+							<table>
+								<tr>
+									<td>
+										<img src="img/pause.png" style="width:50px; height:50px;" id="pauseGame" class="glow-on-hover" onclick="resumeGame()"/>
+										<img src="img/play.png"  style="width:50px; height:50px;" id="playGame" class="glow-on-hover" onclick="playGame()" hidden/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="img/mute.png" style="width:50px; height:50px;" id="stopSound" class="glow-on-hover" onclick="stopSound()"/>
+										<img src="img/unMute.png"  style="width:50px; height:50px;" id="playSound" class="glow-on-hover" onclick="playSound()" hidden/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<button id="new_game" style="width: 50px; height: 50px;" onclick="show('Settings')"><a style="font-size:10px ;">New Game</a></button>
+									</td>
+									
+								</tr>
+							</table>
+						
+					<!--	<button id="stopSound" class="glow-on-hover"  onclick="stopSound()"><a style="font-size:230%;">Stop Music</a></button>
+						<button id="playSound" class="glow-on-hover" onclick="playSound()" hidden><a style="font-size:230%;">Play Music</a></button>-->
+						<!-- <td rowspan="10"><input hidden id="playSound" type="image" /*onclick="playSound()"*/ src="img/soundOff.png" width="48" height="48"></td> -->
+					</div>
+					</div>
+					
+				
 
 			</div>
 		<!-- Game-Over -->
@@ -368,7 +399,6 @@
 			</p>
 			
 
-		</div>
 		</div>
 	</body>
 </html>

@@ -1,3 +1,7 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
 body{
 	/* background-color: black; */
 	background-repeat: no-repeat;
@@ -7,10 +11,12 @@ body{
 
     background:#000;
     font-family: "Oswald",sans-serif;
-    height: 100%;
-    /*min-height: 100%;*/
-    margin: 0;
-    padding: 0;
+   /* height: 100%;*/
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+   /* margin: 0;
+    padding: 0;*/
 }
 /*---------------------------------------------Welcome-------------------------------------------------------*/
 /*---------------------------------------------Register-------------------------------------------------------*/
@@ -128,7 +134,8 @@ div.headerRight{
    /* position: relative;*/
     /*display: flex;*/
     /*min-height: 100%;*/
-    flex:1;
+    flex: 1;
+    margin-bottom: 30px;
 }
 
 
@@ -143,7 +150,10 @@ div.headerRight{
 }
 #register, #login, #settings, #gameAll, #gameOver{
 	display: none;
+    width: 100%;
+   
 }
+
 
 
 /* #score, #time{
@@ -166,6 +176,8 @@ div.headerRight{
     font-weight: 300;
     border-style: outset;
     bottom: 0;
+    position: absolute;
+    width: 100%;
 
 }
 .column1{
@@ -407,7 +419,7 @@ p {
 {
     border-radius: 5px;
     margin: 0 auto;
-    margin-top: 5%;
+    margin-top: 5px;
     background-color: rgba(186, 189, 179, 0.877);
     width: 580px;
     height: 700px;
@@ -529,8 +541,26 @@ form .error {
     display: flex;
 }
 
-#main-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-  }
+
+.firstChild{
+  /* display: inline-block;*/
+    width: 33%;
+   /* float: left;*/
+    
+    padding-top: 0;
+    display: inline-block;
+}
+#game{
+  /* margin-left: 33%;*/
+ /* margin: auto;*/
+ width: 60%;
+  
+   display: inline-block;
+}
+#game2{
+    width: 15%;
+    display: inline-block;
+  
+   /* float:right;*/
+   height: 600px;
+}
