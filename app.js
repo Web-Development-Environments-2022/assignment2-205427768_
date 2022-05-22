@@ -88,6 +88,7 @@ var food_remain;
 var playSoundBoll = false;
 var sound_play;
 var music;
+var pauseGame;
 
 var currTimePause;
 
@@ -174,12 +175,20 @@ function show(elementID){
 	if (music== true){
 		stopSound();
 	}
-	window.clearInterval(interval);
-	window.clearInterval(interval50);
-	window.clearInterval(intervalClock);
-	window.clearInterval(intervalGhosts);
-	window.clearInterval(intervalLives);
-	window.clearInterval(intervalSlowMotion);
+	
+	if(pauseGame == false){
+		window.clearInterval(interval);
+		window.clearInterval(interval50);
+		window.clearInterval(intervalClock);
+		window.clearInterval(intervalGhosts);
+		window.clearInterval(intervalLives);
+		window.clearInterval(intervalSlowMotion);
+	}
+		
+		
+	
+	
+	
 } 
 
 function startNewGame(){
@@ -248,9 +257,10 @@ function startNewGame(){
 		form.reset();
 		Start();
 	});
-
+	pauseGame = false;
 	playSoundBoll=true;
 	playSound();
+	playGame();
 	
 }
 
@@ -355,6 +365,7 @@ function Start() {
 	currGhost = 1;
 	eaten50 = false;
 	isSlowMotion = false;
+	//pauseGame = false;
 	createImages();
 	createSounds();
 
@@ -514,6 +525,7 @@ function Start() {
 	intervalGhosts = setInterval(UpdatePositionGhosts, 500);
 	intervalLives = setInterval(UpdatePositionLife, 25000);
 	intervalSlowMotion = setInterval(UpdatePositionSlowMotion ,20000);
+	
 	playSound();
 	music = true;
 }
@@ -822,6 +834,8 @@ function UpdatePosition() {
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	if(time_elapsed >= gameTime || currBallsNum==0){
+		stopSound();
+		show('gameOver');
 		if(score< 100 ){
 			alert("You are better than "+score+" points!");
 			/*alert = function(){};*/
@@ -833,8 +847,7 @@ function UpdatePosition() {
 			/*alert = function(){};*/
 			/*show('Settings');*/
 		}
-		stopSound();
-		show('gameOver');
+		
 	}
 	/*if (score >= 20 && time_elapsed <= 10) {
 		pac_color = "green";
@@ -861,8 +874,9 @@ function UpdateLifes(){
 	
 	if(livesNum==0)
 	{   
-		alert("Looser!");
+		
 		show('gameOver');
+		alert("Looser!");
 	}
 	else{
 		currGhost = 1;
@@ -1100,7 +1114,7 @@ function resumeGame(){
 		music = false;
 
 	}
-	
+	pauseGame = true;
 	currTimePause = new Date();
 	window.clearInterval(interval);
 	window.clearInterval(interval50);
@@ -1123,13 +1137,13 @@ function playGame(){
 	var elapsed = (now-currTimePause) / 1000;
 	//gameTime = gameTime + elapsed;
 	start_time.setSeconds(start_time.getSeconds() + elapsed) ;
-
 	interval = setInterval(UpdatePosition, 170);
 	interval50 = setInterval(UpdatePosition50, 700);
 	intervalClock = setInterval(updatePositionClock, 30000);
 	intervalGhosts = setInterval(UpdatePositionGhosts, 500);
 	intervalLives = setInterval(UpdatePositionLife, 25000);
 	intervalSlowMotion = setInterval(UpdatePositionSlowMotion,20000);
+	pauseGame = false;
 	document.getElementById("canvas").disabled = false;
 }
 	

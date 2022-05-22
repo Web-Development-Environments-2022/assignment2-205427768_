@@ -555,8 +555,7 @@ form .error {
 #game{
   /* margin-left: 33%;*/
  /* margin: auto;*/
- width: 60%;
-  
+    width: 60%;
    display: inline-block;
 }
 #game2{
