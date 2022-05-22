@@ -258,8 +258,8 @@ function startNewGame(){
 		Start();
 	});
 	pauseGame = false;
-	playSoundBoll=true;
-	playSound();
+//	playSoundBoll=true;
+	//playSound();
 	playGame();
 	
 }
