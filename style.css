@@ -91,9 +91,11 @@ table{
 }
 div.headerRight{
     position: absolute;
-    right: 5px;
-    width: 150px;
-    height: 180px;
+    right: 1%;
+    top: 10%;
+    width: 20%;
+    height: 10%;
+    background-color: #00ffd5;
 }
 
 .topMenu{
